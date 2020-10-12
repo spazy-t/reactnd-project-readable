@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { handleInitData } from './actions/shared'
 import { connect } from 'react-redux'
+import CatList from './containers/CatList'
 
 function App(props) {
 
@@ -11,7 +12,8 @@ function App(props) {
 
   return (
     <div className="App">
-      <header className="App-header">Readable app</header>
+      <header className="App-header">Header</header>
+      <CatList />
     </div>
   )
 }
