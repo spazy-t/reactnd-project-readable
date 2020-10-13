@@ -1,13 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PostsCard from './PostsCard'
+import { withRouter, Link, useParams } from 'react-router-dom'
 
 const CatContainer = (props) => {
     const { id, postsForCat } = props
+    const { cat_id }  = useParams()
 
+    //determine if we are on the individual category view or main list view
+    //if individual view disable the link
     return(
         <div className='cat-container'>
-            <h2>{id}</h2>
+            {cat_id !== id
+                ? <Link to={`categories/${id}`}>
+                    <h2>{id}</h2>
+                </Link>
+                : <h2>{id}</h2>
+            }
+            
             <section>
                 {postsForCat.length !== 0
                     ? postsForCat.map(post => (
@@ -31,4 +41,4 @@ function mapStateToProps({ posts }, { id }) {
     }
 }
 
-export default connect(mapStateToProps)(CatContainer)
+export default withRouter(connect(mapStateToProps)(CatContainer))
