@@ -5,7 +5,7 @@ const PostsCards = (props) => {
     const { currentPost } = props
 
     return(
-        <div>
+        <div className='posts-card'>
             {currentPost.map(post => (
                 <article key={ post.id }>
                     <p>{ post.title }</p>

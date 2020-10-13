@@ -7,6 +7,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 //import * as serviceWorker from './serviceWorker'
 
+//css
+import './styles/main.css'
+
 const store = createStore(reducer, middleware)
 
 ReactDOM.render(

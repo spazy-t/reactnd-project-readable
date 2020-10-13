@@ -6,7 +6,7 @@ const CatList = (props) => {
     const { currentCategories } = props
 
     return(
-        <div>
+        <div className='cat-list'>
             {currentCategories.map(category => (
                 <CatContainer key={ category } id={ category } />
             ))}

@@ -6,7 +6,7 @@ const CatContainer = (props) => {
     const { id, postsForCat } = props
 
     return(
-        <div>
+        <div className='cat-container'>
             <h2>{id}</h2>
             <section>
                 {postsForCat.length !== 0
@@ -16,6 +16,7 @@ const CatContainer = (props) => {
                     : `No posts currently!`
                 }
             </section>
+            <button>Add Post</button>
         </div>
     )
 }
