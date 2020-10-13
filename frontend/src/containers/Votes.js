@@ -1,12 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { handlePostVote } from '../actions/posts'
 
 const Votes = (props) => {
+    const { postIdToShow, dispatch } = props
+    //TODO: after key id fix in action remove hardcoded post id
     return(
         <div className='vote-widget'>
-            <button>+</button>
+            <button onClick={() => dispatch(handlePostVote('8xf0y6ziyjabvozdd253nd', 'upVote'))}>+</button>
             <p>{props.postVoteNum}</p>
-            <button>-</button>
+            <button onClick={() => dispatch(handlePostVote(postIdToShow, 'downVote'))}>-</button>
         </div>
     )
 }
@@ -19,7 +22,8 @@ function mapStateToProps({ posts, comments }, { id }) {
     const postIdToShow = Object.keys(posts).filter(post => posts[post].id === id)
 
     return {
-        postVoteNum: posts[postIdToShow].voteScore
+        postVoteNum: posts[postIdToShow].voteScore,
+        postIdToShow
     }
 }
 

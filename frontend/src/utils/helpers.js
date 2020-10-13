@@ -25,8 +25,8 @@ const getPosts = async () => {
 }
 
 //comments only exist for posts so called only when looking at a post, gets comments for a post from server
-const getComments = async () => {
-    const res = await fetch('http://localhost:3001/posts/:id/comments', { headers: { 'Authorization': 'timmy' }})
+const getComments = async (id) => {
+    const res = await fetch(`http://localhost:3001/posts/${id}/comments`, { headers: { 'Authorization': 'timmy' }})
 
     try {
         const data = await res.json()
@@ -36,8 +36,27 @@ const getComments = async () => {
     }
 }
 
+const postPostVote = async (id, voteOption) => {
+    const res = await fetch(`http://localhost:3001/posts/${id}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(voteOption)
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error saving vote to post', e)
+    }
+}
+
 export {
     getCategories,
     getPosts,
-    getComments
+    getComments,
+    postPostVote
 }
