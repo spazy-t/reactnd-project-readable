@@ -13,9 +13,9 @@ body {
 }
 
 .cat-container {
+    min-width: 300px;
     display: flex;
     flex-direction: column;
-    min-width: 250px;
     border: 1px solid #000;
     margin-top: 20px;
 }
@@ -35,4 +35,24 @@ body {
     border: 1px solid green;
     margin-bottom: 15px;
     cursor: pointer;
+}
+
+.posts-card {
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.vote-widget {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.vote-widget button {
+    margin-bottom: 0;
 }
