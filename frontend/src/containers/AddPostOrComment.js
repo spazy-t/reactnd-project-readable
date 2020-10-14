@@ -59,7 +59,7 @@ const AddPostOrComment = ({ handleNewPost, history }) => {
                 />
                 <button
                     type='submit'
-                    disabled={ title === '' || author === '' || body === ''}
+                    disabled={ title === '' || author === '' || body === '' }
                 >
                     SUBMIT
                 </button>

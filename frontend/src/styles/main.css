@@ -6,6 +6,14 @@ body {
     width: 100%;
 }
 
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
 .cat-list {
     display: flex;
     flex-direction: column;
@@ -66,4 +74,13 @@ body {
     grid-column-start: 2;
     display: flex;
     flex-direction: column;
+}
+
+.new-entry-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+.form-input {
+    margin-bottom: 15px;
 }
