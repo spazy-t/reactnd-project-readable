@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { handleNewPost } from '../actions/posts'
 import { useParams } from 'react-router-dom'
+import { generateUID } from '../utils/helpers'
 
 const AddPostOrComment = ({ handleNewPost, history }) => {
     //reads the url parameter to know which category to place a new post into
@@ -15,10 +16,9 @@ const AddPostOrComment = ({ handleNewPost, history }) => {
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
-        //TODO: create UUID
 
         handleNewPost({
-            id: 'testysfasdfas',
+            id: generateUID(),
             timestamp: Date.now(),
             title,
             body,
@@ -33,23 +33,25 @@ const AddPostOrComment = ({ handleNewPost, history }) => {
         })
     }
 
-    //TODO: disable submit if no content in any text field
     return(
         <div className='form-container'>
             <form className='new-entry-form' onSubmit={handleSubmit}>
-                <textarea
+                <input
+                    className='form-input'
                     value={title}
                     name='title'
                     placeholder='Enter Title'
                     onChange={(evt) => setTitle(evt.target.value)}
                  />
-                <textarea
+                <input
+                    className='form-input'
                     value={author}
                     name='author'
                     placeholder='Enter Author name'
                     onChange={(evt) => setAuthor(evt.target.value)}
                 />
                 <textarea
+                    className='form-input'
                     value={body}
                     name='body'
                     placeholder='Enter body of post'
@@ -57,6 +59,7 @@ const AddPostOrComment = ({ handleNewPost, history }) => {
                 />
                 <button
                     type='submit'
+                    disabled={ title === '' || author === '' || body === ''}
                 >
                     SUBMIT
                 </button>

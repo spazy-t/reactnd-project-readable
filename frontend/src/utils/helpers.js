@@ -75,10 +75,17 @@ const addNewPost = async (postDetails) => {
     }
 }
 
+//Taken from Udacity would you rather project '_DATA.js' (14/10/2020)
+//generate uniqu id
+const generateUID = () => {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
 export {
     getCategories,
     getPosts,
     getComments,
     postPostVote,
-    addNewPost
+    addNewPost,
+    generateUID
 }
