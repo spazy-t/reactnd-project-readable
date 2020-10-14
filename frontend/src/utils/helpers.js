@@ -36,6 +36,7 @@ const getComments = async (id) => {
     }
 }
 
+//https://stackoverflow.com/questions/11625519/how-to-access-the-request-body-when-posting-using-node-js-and-express
 //sets relevant post, via url id, vote either up or down one determined by voteOption
 const postPostVote = async (id, voteOption) => {
     const res = await fetch(`http://localhost:3001/posts/${id}`, {
@@ -55,9 +56,29 @@ const postPostVote = async (id, voteOption) => {
     }
 }
 
+//adds new post to posts list in server via new post object containing it's details
+const addNewPost = async (postDetails) => {
+    const res = await fetch('http://localhost:3001/posts', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postDetails)
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error saving new post', e)
+    }
+}
+
 export {
     getCategories,
     getPosts,
     getComments,
-    postPostVote
+    postPostVote,
+    addNewPost
 }

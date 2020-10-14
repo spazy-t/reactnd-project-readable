@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN } from '../constants'
+import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST } from '../constants'
 
 const posts = (state = {}, action) => {
     switch(action.type) {
@@ -6,6 +6,16 @@ const posts = (state = {}, action) => {
             return {
                 ...state,
                 ...action.posts
+            }
+        case ADD_NEW_POST:
+            return {
+                ...state,
+                [action.newPost.id]: {
+                    ...action.newPost,
+                    voteScore: 1,
+                    deleted: false,
+                    commentCount: 0
+                }
             }
         case POST_VOTE_UP:
             return {

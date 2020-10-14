@@ -4,3 +4,4 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 
 export const POST_VOTE_UP = 'POST_VOTE_UP'
 export const POST_VOTE_DOWN = 'POST_VOTE_DOWN'
+export const ADD_NEW_POST = 'ADD_NEW_POST'

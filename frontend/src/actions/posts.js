@@ -1,5 +1,5 @@
-import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN } from '../constants'
-import { postPostVote } from '../utils/helpers'
+import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST } from '../constants'
+import { postPostVote, addNewPost } from '../utils/helpers'
 
 /**
  * thunk actions
@@ -19,6 +19,19 @@ export const handlePostVote = (id, voteType) => {
     }
 }
 
+//adds new post to category in server then store state
+export const handleNewPost = (newPost) => {
+    return(dispatch) => {
+        return addNewPost(newPost)
+        .then(
+            dispatch(newCatPost(newPost))
+        )
+        .catch(err => {
+            console.log('error adding new post', err)
+        })
+    }
+}
+
 /**
  * regular actions
  */
@@ -30,16 +43,23 @@ export const receivePosts = (posts) => {
 }
 
 //TODO: maybe condense both votes into one, and pass through new number from component?
-export const postVoteUp = (postId) => {
+const postVoteUp = (postId) => {
     return {
         type: POST_VOTE_UP,
         postId
     }
 }
 
-export const postVoteDown = (postId) => {
+const postVoteDown = (postId) => {
     return {
         type: POST_VOTE_DOWN,
         postId
+    }
+}
+
+const newCatPost = (newPost) => {
+    return {
+        type: ADD_NEW_POST,
+        newPost
     }
 }

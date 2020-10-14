@@ -7,6 +7,7 @@ import { Route } from 'react-router-dom'
  */
 import CatList from './containers/CatList'
 import CatScreen from './screens/CatScreen'
+import AddPostOrComment from './containers/AddPostOrComment'
 
 function App(props) {
   //uses hooks to get initial data when app mounts
@@ -17,8 +18,9 @@ function App(props) {
   return (
     <div className="App">
       <header className="App-header">Header</header>
-      <Route exact path='/' component={CatList} />
-      <Route path='/categories/:cat_id' component={CatScreen} />
+      <Route exact path='/' component={ CatList } />
+      <Route path='/categories/:cat_id' component={ CatScreen } />
+      <Route path='/newPost/:cat_id' component={ AddPostOrComment } />
     </div>
   )
 }

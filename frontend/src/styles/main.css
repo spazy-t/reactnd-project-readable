@@ -56,3 +56,14 @@ body {
 .vote-widget button {
     margin-bottom: 0;
 }
+
+.form-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+}
+
+.new-entry-form {
+    grid-column-start: 2;
+    display: flex;
+    flex-direction: column;
+}

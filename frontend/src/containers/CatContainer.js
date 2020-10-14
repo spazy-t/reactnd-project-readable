@@ -4,7 +4,8 @@ import PostsCard from './PostsCard'
 import { withRouter, Link, useParams } from 'react-router-dom'
 
 const CatContainer = (props) => {
-    const { id, postsForCat } = props
+    const { id, postsForCat, history } = props
+    //grabs parameter on url if there, if so then we are in individual category screen
     const { cat_id }  = useParams()
 
     //determine if we are on the individual category view or main list view
@@ -26,7 +27,7 @@ const CatContainer = (props) => {
                     : `No posts currently!`
                 }
             </section>
-            <button>Add Post</button>
+            <button onClick={() => history.push(`/newPost/${id}`)}>Add Post</button>
         </div>
     )
 }
