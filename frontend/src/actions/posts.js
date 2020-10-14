@@ -4,14 +4,14 @@ import { postPostVote } from '../utils/helpers'
 /**
  * thunk actions
  */
-//TODO: when shared action key id sorted take out hardcoded id here too
-//TODO: set up if voteDown also
 //TODO: optomistic updating, look up in previous project
 export const handlePostVote = (id, voteType) => {
     return(dispatch) => {
         postPostVote(id, {option: voteType})
         .then(
-            dispatch(postVoteUp(0))
+            voteType === 'upVote'
+                ? dispatch(postVoteUp(id))
+                : dispatch(postVoteDown(id))
         )
         .catch(err => {
             console.log('error saving post vote', err)

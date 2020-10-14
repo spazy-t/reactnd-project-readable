@@ -3,27 +3,24 @@ import { connect } from 'react-redux'
 import { handlePostVote } from '../actions/posts'
 
 const Votes = (props) => {
-    const { postIdToShow, dispatch } = props
-    //TODO: after key id fix in action remove hardcoded post id
+    const { id, dispatch } = props
+
     return(
         <div className='vote-widget'>
-            <button onClick={() => dispatch(handlePostVote('8xf0y6ziyjabvozdd253nd', 'upVote'))}>+</button>
+            <button onClick={() => dispatch(handlePostVote(id, 'upVote'))}>+</button>
             <p>{props.postVoteNum}</p>
-            <button onClick={() => dispatch(handlePostVote(postIdToShow, 'downVote'))}>-</button>
+            <button onClick={() => dispatch(handlePostVote(id, 'downVote'))}>-</button>
         </div>
     )
 }
 
-//TODO: determine if using for post or comment
+//TODO: determine if using for posts or comment
 //TODO: connect to server and state changes to vote of post / comment
 
 function mapStateToProps({ posts, comments }, { id }) {
-    //find relevant post from state and use to grab it's vote number
-    const postIdToShow = Object.keys(posts).filter(post => posts[post].id === id)
-
     return {
-        postVoteNum: posts[postIdToShow].voteScore,
-        postIdToShow
+        postVoteNum: posts[id].voteScore,
+        id
     }
 }
 

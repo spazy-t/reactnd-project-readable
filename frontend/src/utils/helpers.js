@@ -36,6 +36,7 @@ const getComments = async (id) => {
     }
 }
 
+//sets relevant post, via url id, vote either up or down one determined by voteOption
 const postPostVote = async (id, voteOption) => {
     const res = await fetch(`http://localhost:3001/posts/${id}`, {
         method: 'POST',

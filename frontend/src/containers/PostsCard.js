@@ -20,7 +20,7 @@ const PostsCards = (props) => {
 //grabs the content of the post via id past in via parent, used to display post info
 function mapStateToProps({ posts }, { id }) {
     return {
-        currentPost: Object.values(posts).filter(post => post.id === id)[0]
+        currentPost: posts[id]
     }
 }
 
