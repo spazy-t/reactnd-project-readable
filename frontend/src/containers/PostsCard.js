@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Votes from './Votes'
+import { withRouter } from 'react-router-dom'
 
 const PostsCards = (props) => {
-    const { currentPost } = props
+    const { currentPost, history } = props
 
     return(
         <div className='posts-card'>
-            <article>
+            <article onClick={() => history.push(`${currentPost.category}/${currentPost.id}`)}>
                 <p>{ currentPost.title }</p>
                 <p>By: { currentPost.author }</p>
                 <p>{ currentPost.commentCount } Comments</p>
@@ -24,4 +25,4 @@ function mapStateToProps({ posts }, { id }) {
     }
 }
 
-export default connect(mapStateToProps)(PostsCards)
+export default withRouter(connect(mapStateToProps)(PostsCards))

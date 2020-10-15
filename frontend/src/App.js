@@ -16,14 +16,13 @@ function App(props) {
     props.dispatch(handleInitData())
   })
 
-  //TODO: change category path inline with rubric
   return (
     <div className="App">
       <header className="App-header">Header</header>
       <Route exact path='/' component={ CatList } />
-      <Route path='/:category' component={ CatScreen } />
+      <Route exact path='/:category' component={ CatScreen } />
       <Route path='/newPost/:category' component={ AddPostOrComment } />
-      <Route path='' component={PostDetails} />
+      <Route path='/:category/:post_id' component={ PostDetails } />
     </div>
   )
 }

@@ -1,6 +1,7 @@
-import { getCategories, getPosts } from '../utils/helpers'
+import { getCategories, getPosts, getComments } from '../utils/helpers'
 import { receiveCategories } from './categories'
 import { receivePosts } from './posts'
+import { receiveComments } from './comments'
 
 /**
  * thunk action to grab init data from server (posts and categories)
@@ -16,9 +17,22 @@ export const handleInitData = () => {
 
             dispatch(receiveCategories(cats.categories))
             dispatch(receivePosts(postsObj))
+
+            dispatch(getCurrentComments(postsObj))
         })
         .catch(err => {
             console.log('error retrieving data from server', err)
+        })
+    }
+}
+
+const getCurrentComments = (posts) => {
+    return(dispatch) => {
+        Object.keys(posts).forEach(post => {
+            getComments(post)
+            .then(data => {
+                dispatch(receiveComments(data))
+            })
         })
     }
 }
