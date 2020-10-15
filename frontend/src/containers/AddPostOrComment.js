@@ -7,7 +7,7 @@ import { generateUID } from '../utils/helpers'
 const AddPostOrComment = ({ handleNewPost, history }) => {
     //reads the url parameter to know which category to place a new post into
     //TODO: validate url param to be one of the categories or 404 them!
-    const { cat_id } = useParams()
+    const { category } = useParams()
 
     //local state for the form
     const [title, setTitle] = useState('')
@@ -23,7 +23,7 @@ const AddPostOrComment = ({ handleNewPost, history }) => {
             title,
             body,
             author,
-            category: cat_id
+            category: category
         })
         .then(() => {
             setTitle('')

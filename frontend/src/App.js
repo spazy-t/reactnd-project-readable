@@ -8,6 +8,7 @@ import { Route } from 'react-router-dom'
 import CatList from './containers/CatList'
 import CatScreen from './screens/CatScreen'
 import AddPostOrComment from './containers/AddPostOrComment'
+import PostDetails from './containers/PostDetails'
 
 function App(props) {
   //uses hooks to get initial data when app mounts
@@ -15,12 +16,14 @@ function App(props) {
     props.dispatch(handleInitData())
   })
 
+  //TODO: change category path inline with rubric
   return (
     <div className="App">
       <header className="App-header">Header</header>
       <Route exact path='/' component={ CatList } />
-      <Route path='/categories/:cat_id' component={ CatScreen } />
-      <Route path='/newPost/:cat_id' component={ AddPostOrComment } />
+      <Route path='/:category' component={ CatScreen } />
+      <Route path='/newPost/:category' component={ AddPostOrComment } />
+      <Route path='' component={PostDetails} />
     </div>
   )
 }

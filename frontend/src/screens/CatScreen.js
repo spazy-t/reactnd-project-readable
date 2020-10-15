@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom'
 import CatContainer from '../containers/CatContainer'
 
 const CatScreen = () => {
-    const { cat_id } = useParams()
+    const { category } = useParams()
 
     return(
         <div>
-            <CatContainer id={ cat_id } />
+            <CatContainer id={ category } />
         </div>
     )
 }

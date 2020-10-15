@@ -6,14 +6,14 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 const CatContainer = (props) => {
     const { id, postsForCat, history } = props
     //grabs parameter on url if there, if so then we are in individual category screen
-    const { cat_id }  = useParams()
+    const { category }  = useParams()
 
     //determine if we are on the individual category view or main list view
     //if individual view disable the link
     return(
         <div className='cat-container'>
-            {cat_id !== id
-                ? <Link to={`categories/${id}`}>
+            {category !== id
+                ? <Link to={`/${id}`}>
                     <h2>{id}</h2>
                 </Link>
                 : <h2>{id}</h2>
