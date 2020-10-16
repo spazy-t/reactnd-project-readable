@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { handleNewComment } from '../actions/comments'
 import { generateUID } from '../utils/helpers'
 
-const NewCommentForm = ({ handleNewComment, parentId }) => {
+const NewCommentForm = ({ handleNewComment, parentId, hideForm = null }) => {
     //local state for form to add new comment
     const [author, setAuthor] = useState('')
     const [body, setBody] = useState('')
@@ -21,6 +21,10 @@ const NewCommentForm = ({ handleNewComment, parentId }) => {
         .then(() => {
             setAuthor('')
             setBody('')
+
+            if(hideForm !== null) {
+                hideForm()
+            }
         })
     }
 

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
@@ -12,8 +12,13 @@ import NewCommentForm from './NewCommentForm'
 const PostDetails = (props) => {
     const { currentPost, postCommentsIds } = props
     const { post_id } = useParams()
+    const [showForm, setShowForm] = useState(false)
 
-    //TODO: hide new comment form before add comment press and after new comment submitted
+    //callback to send to NewCommentForm to hide form when comment added
+    const hideForm = () => {
+        setShowForm(false)
+    }
+
     return(
         <div className='post-details'>
             { currentPost !== undefined &&(
@@ -31,8 +36,14 @@ const PostDetails = (props) => {
                             <CommentCard key={comment.id} data={comment} />
                         ))}
                     </div>
-                    <NewCommentForm parentId={post_id} />
-                    <button className='add-comment-btn'>Add Comment</button>
+                    { showForm
+                        ? <NewCommentForm parentId={post_id} hideForm={hideForm} />
+                        : <button
+                            className='add-comment-btn'
+                            onClick={() => setShowForm(true)}>
+                                Add Comment
+                        </button>
+                    }
                 </Fragment>
             )}
         </div>
