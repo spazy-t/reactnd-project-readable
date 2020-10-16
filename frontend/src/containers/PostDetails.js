@@ -1,13 +1,19 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import CommentCard from '../screens/CommentCard'
-import Votes from './Votes'
 import { useParams } from 'react-router-dom'
+
+/**
+ * components
+ */
+import Votes from './Votes'
+import CommentCard from '../screens/CommentCard'
+import NewCommentForm from './NewCommentForm'
 
 const PostDetails = (props) => {
     const { currentPost, postCommentsIds } = props
     const { post_id } = useParams()
 
+    //TODO: hide new comment form before add comment press and after new comment submitted
     return(
         <div className='post-details'>
             { currentPost !== undefined &&(
@@ -25,6 +31,8 @@ const PostDetails = (props) => {
                             <CommentCard key={comment.id} data={comment} />
                         ))}
                     </div>
+                    <NewCommentForm parentId={post_id} />
+                    <button className='add-comment-btn'>Add Comment</button>
                 </Fragment>
             )}
         </div>

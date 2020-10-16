@@ -88,7 +88,7 @@ button:disabled {
 .post-details {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
 }
 
 .post-details article {
@@ -114,4 +114,17 @@ button:disabled {
 .details-vote {
     grid-column-start: 3;
     width: fit-content;
+}
+
+.add-comment-btn {
+    grid-column-start: 2;
+    width: fit-content;
+    justify-self: center;
+    margin-bottom: 25px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 2;
 }

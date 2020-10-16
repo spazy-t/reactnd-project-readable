@@ -11,10 +11,7 @@ const posts = (state = {}, action) => {
             return {
                 ...state,
                 [action.newPost.id]: {
-                    ...action.newPost,
-                    voteScore: 1,
-                    deleted: false,
-                    commentCount: 0
+                    ...action.newPost
                 }
             }
         case POST_VOTE_UP:

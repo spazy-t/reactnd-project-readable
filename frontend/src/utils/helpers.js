@@ -94,6 +94,25 @@ const addNewPost = async (postDetails) => {
     }
 }
 
+//adds new comment to a post in server via new comment object containing it's details
+const addNewComment = async (commentDetails) => {
+    const res = await fetch('http://localhost:3001/comments', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentDetails)
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error saving new post', e)
+    }
+}
+
 //Taken from Udacity would you rather project '_DATA.js' (14/10/2020)
 //generate uniqu id
 const generateUID = () => {
@@ -107,5 +126,6 @@ export {
     postPostVote,
     postCommentVote,
     addNewPost,
+    addNewComment,
     generateUID
 }

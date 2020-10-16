@@ -7,7 +7,7 @@ import { Route } from 'react-router-dom'
  */
 import CatList from './containers/CatList'
 import CatScreen from './screens/CatScreen'
-import AddPostOrComment from './containers/AddPostOrComment'
+import AddPost from './containers/AddPost'
 import PostDetails from './containers/PostDetails'
 
 function App(props) {
@@ -21,7 +21,7 @@ function App(props) {
       <header className="App-header">Header</header>
       <Route exact path='/' component={ CatList } />
       <Route exact path='/:category' component={ CatScreen } />
-      <Route path='/newPost/:category' component={ AddPostOrComment } />
+      <Route path='/newPost/:category' component={ AddPost } />
       <Route path='/:category/:post_id' component={ PostDetails } />
     </div>
   )

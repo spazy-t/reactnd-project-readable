@@ -1,4 +1,4 @@
-import { RECEIVE_COMMENTS, COMMENT_VOTE_UP, COMMENT_VOTE_DOWN } from '../constants'
+import { RECEIVE_COMMENTS, COMMENT_VOTE_UP, COMMENT_VOTE_DOWN, ADD_NEW_COMMENT } from '../constants'
 
 //TODO: refactor as comments are only sent in when looking at a post detail screen, so need to be put into a postId obj/array?
 const comments = (state = {}, action) => {
@@ -22,6 +22,13 @@ const comments = (state = {}, action) => {
                 [action.commentId]: {
                     ...state[action.commentId],
                     voteScore: state[action.commentId].voteScore - 1
+                }
+            }
+        case ADD_NEW_COMMENT:
+            return {
+                ...state,
+                [action.comment.id]: {
+                    ...action.comment
                 }
             }
         default:

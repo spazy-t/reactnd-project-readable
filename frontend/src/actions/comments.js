@@ -1,5 +1,6 @@
-import { RECEIVE_COMMENTS, COMMENT_VOTE_UP, COMMENT_VOTE_DOWN } from '../constants'
-import { postCommentVote } from '../utils/helpers'
+import { RECEIVE_COMMENTS, COMMENT_VOTE_UP, COMMENT_VOTE_DOWN, ADD_NEW_COMMENT } from '../constants'
+import { postCommentVote, addNewComment } from '../utils/helpers'
+
 /**
  * thunk actions
  */
@@ -18,6 +19,16 @@ export const handleCommentVote = (commentId, voteType) => {
     }
 }
 
+export const handleNewComment = (newComment) => {
+    return(dispatch) => {
+        return addNewComment(newComment)
+        .then((data) => {
+            dispatch(addComment(data))
+        })
+        .catch(err => console.log('error saving new comment', err))
+    }
+}
+
 /**
  * regular actions
  */
@@ -28,16 +39,23 @@ export const receiveComments = (comments) => {
     }
 }
 
-export const commentVoteUp = (commentId) => {
+const commentVoteUp = (commentId) => {
     return {
         type: COMMENT_VOTE_UP,
         commentId
     }
 }
 
-export const commentVoteDown = (commentId) => {
+const commentVoteDown = (commentId) => {
     return {
         type: COMMENT_VOTE_DOWN,
         commentId
+    }
+}
+
+const addComment = (comment) => {
+    return {
+        type: ADD_NEW_COMMENT,
+        comment
     }
 }

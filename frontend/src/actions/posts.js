@@ -23,9 +23,9 @@ export const handlePostVote = (id, voteType) => {
 export const handleNewPost = (newPost) => {
     return(dispatch) => {
         return addNewPost(newPost)
-        .then(
-            dispatch(newCatPost(newPost))
-        )
+        .then((data) => {
+            dispatch(newCatPost(data))
+        })
         .catch(err => {
             console.log('error adding new post', err)
         })

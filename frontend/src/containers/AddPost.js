@@ -4,7 +4,7 @@ import { handleNewPost } from '../actions/posts'
 import { useParams } from 'react-router-dom'
 import { generateUID } from '../utils/helpers'
 
-const AddPostOrComment = ({ handleNewPost, history }) => {
+const AddPost = ({ handleNewPost, history }) => {
     //reads the url parameter to know which category to place a new post into
     //TODO: validate url param to be one of the categories or 404 them!
     const { category } = useParams()
@@ -68,4 +68,4 @@ const AddPostOrComment = ({ handleNewPost, history }) => {
     )
 }
 
-export default connect(null, { handleNewPost })(AddPostOrComment)
+export default connect(null, { handleNewPost })(AddPost)
