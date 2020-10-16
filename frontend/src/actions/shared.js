@@ -31,7 +31,10 @@ const getCurrentComments = (posts) => {
         Object.keys(posts).forEach(post => {
             getComments(post)
             .then(data => {
-                dispatch(receiveComments(data))
+                const commentObj = {}
+                data.forEach(comment => {commentObj[comment.id] = comment})
+                
+                dispatch(receiveComments(commentObj))
             })
         })
     }

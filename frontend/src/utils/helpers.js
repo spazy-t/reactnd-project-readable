@@ -56,6 +56,25 @@ const postPostVote = async (id, voteOption) => {
     }
 }
 
+//sets relevant comment, via url id, vote either up or down one determined by voteOption
+const postCommentVote = async (commentId, voteOption) => {
+    const res = await fetch(`http://localhost:3001/comments/${commentId}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(voteOption)
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error saving vote to post', e)
+    }
+}
+
 //adds new post to posts list in server via new post object containing it's details
 const addNewPost = async (postDetails) => {
     const res = await fetch('http://localhost:3001/posts', {
@@ -86,6 +105,7 @@ export {
     getPosts,
     getComments,
     postPostVote,
+    postCommentVote,
     addNewPost,
     generateUID
 }
