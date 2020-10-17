@@ -21,7 +21,8 @@ function App(props) {
       <header className="App-header">Header</header>
       <Route exact path='/' component={ CatList } />
       <Route exact path='/:category' component={ CatScreen } />
-      <Route path='/newPost/:category' component={ AddPost } />
+      <Route exact path='/newPost/:category' component={ AddPost } />
+      <Route path='/newPost/:category/:post_id' component={ AddPost } />
       <Route path='/:category/:post_id' component={ PostDetails } />
     </div>
   )

@@ -13,6 +13,7 @@ const PostsCards = (props) => {
                 <p>By: { currentPost.author }</p>
                 <p>{ currentPost.commentCount } Comments</p>
             </article>
+            <button onClick={() => history.push(`/newPost/${currentPost.category}/${currentPost.id}`)}>Edit</button>
             <Votes id={ currentPost.id }/>
         </div>
     )

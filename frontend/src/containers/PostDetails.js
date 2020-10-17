@@ -10,7 +10,9 @@ import CommentCard from '../screens/CommentCard'
 import NewCommentForm from './NewCommentForm'
 
 const PostDetails = (props) => {
-    const { currentPost, postCommentsIds } = props
+    const { currentPost, postCommentsIds, history } = props
+
+    //hooks
     const { post_id } = useParams()
     const [showForm, setShowForm] = useState(false)
 
@@ -23,6 +25,7 @@ const PostDetails = (props) => {
         <div className='post-details'>
             { currentPost !== undefined &&(
                 <Fragment>
+                    <button onClick={() => history.push(`/newPost/${currentPost.category}/${post_id}`)}>Edit</button>
                     <article>
                         <h1>{currentPost.title}</h1>
                         <h2>{`By: ${currentPost.author}`}</h2>
