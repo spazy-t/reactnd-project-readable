@@ -94,6 +94,25 @@ const addNewPost = async (postDetails) => {
     }
 }
 
+//editPost method for the server PUT /posts/:id
+const editPost = async (postDetails) => {
+    const res = await fetch(`http://localhost:3001/posts/${postDetails.id}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postDetails)
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error editing post', e)
+    }
+}
+
 //adds new comment to a post in server via new comment object containing it's details
 const addNewComment = async (commentDetails) => {
     const res = await fetch('http://localhost:3001/comments', {
@@ -126,6 +145,7 @@ export {
     postPostVote,
     postCommentVote,
     addNewPost,
+    editPost,
     addNewComment,
     generateUID
 }

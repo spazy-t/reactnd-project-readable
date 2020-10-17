@@ -20,6 +20,7 @@ const AddPost = (props) => {
         evt.preventDefault()
 
         //if the user is editing a post a post_id will be sent in url params, therefore use this instaed of generating an id
+        //also passes boolean to determine if its editing a current post or adding a new one
         handleNewPost({
             id: post_id === undefined ? generateUID() : post_id,
             timestamp: Date.now(),
@@ -27,7 +28,7 @@ const AddPost = (props) => {
             body,
             author,
             category: category
-        })
+        }, post_id !== undefined)
         .then(() => {
             setTitle('')
             setAuthor('')

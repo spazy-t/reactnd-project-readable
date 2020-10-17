@@ -1,5 +1,5 @@
 import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST } from '../constants'
-import { postPostVote, addNewPost } from '../utils/helpers'
+import { postPostVote, addNewPost, editPost } from '../utils/helpers'
 
 /**
  * thunk actions
@@ -19,10 +19,10 @@ export const handlePostVote = (id, voteType) => {
     }
 }
 
-//adds new post to category in server then store state
-export const handleNewPost = (newPost) => {
+//adds new post to category in server then store state, or edits a post depending on boolean passed in from addPost
+export const handleNewPost = (newPost, edit = false) => {
     return(dispatch) => {
-        return addNewPost(newPost)
+        return (!edit ? addNewPost(newPost) : editPost(newPost))
         .then((data) => {
             dispatch(newCatPost(data))
         })
