@@ -132,6 +132,25 @@ const addNewComment = async (commentDetails) => {
     }
 }
 
+//edits a comment on the server and sends back updated data
+const editComment = async (commentDetails) => {
+    const res = await fetch(`http://localhost:3001/comments/${commentDetails.id}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(commentDetails)
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error editing comment', e)
+    }
+}
+
 //Taken from Udacity would you rather project '_DATA.js' (14/10/2020)
 //generate uniqu id
 const generateUID = () => {
@@ -147,5 +166,6 @@ export {
     addNewPost,
     editPost,
     addNewComment,
+    editComment,
     generateUID
 }

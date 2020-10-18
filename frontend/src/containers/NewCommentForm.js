@@ -3,21 +3,22 @@ import { connect } from 'react-redux'
 import { handleNewComment } from '../actions/comments'
 import { generateUID } from '../utils/helpers'
 
-const NewCommentForm = ({ handleNewComment, parentId, hideForm = null }) => {
+const NewCommentForm = (props) => {
+    const { handleNewComment, parentId, hideForm = null, editAuthor, editBody, id } = props
     //local state for form to add new comment
-    const [author, setAuthor] = useState('')
-    const [body, setBody] = useState('')
+    const [author, setAuthor] = useState(editAuthor !== undefined ? editAuthor : '')
+    const [body, setBody] = useState(editBody !== undefined ? editBody : '')
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
 
         handleNewComment({
-            id: generateUID(),
+            id: id !== undefined ? id : generateUID(),
             timestamp: Date.now(),
             body,
             author,
             parentId
-        })
+        }, id !== undefined)
         .then(() => {
             setAuthor('')
             setBody('')

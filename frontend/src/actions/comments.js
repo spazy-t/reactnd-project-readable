@@ -1,5 +1,5 @@
 import { RECEIVE_COMMENTS, COMMENT_VOTE_UP, COMMENT_VOTE_DOWN, ADD_NEW_COMMENT } from '../constants'
-import { postCommentVote, addNewComment } from '../utils/helpers'
+import { postCommentVote, addNewComment, editComment } from '../utils/helpers'
 
 /**
  * thunk actions
@@ -19,9 +19,10 @@ export const handleCommentVote = (commentId, voteType) => {
     }
 }
 
-export const handleNewComment = (newComment) => {
+//depending on edit boolean the hlper method for either the add new cooment or edit existing comment is called
+export const handleNewComment = (newComment, edit = false) => {
     return(dispatch) => {
-        return addNewComment(newComment)
+        return (!edit ? addNewComment(newComment) : editComment(newComment))
         .then((data) => {
             dispatch(addComment(data))
         })
