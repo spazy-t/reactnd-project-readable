@@ -169,6 +169,23 @@ const deleteComment = async (commentId) => {
     }
 }
 
+const deletePost = async (postId) => {
+    const res = await fetch(`http://localhost:3001/posts/${postId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error deleting post', e)
+    }
+}
+
 //Taken from Udacity would you rather project '_DATA.js' (14/10/2020)
 //generate uniqu id
 const generateUID = () => {
@@ -183,6 +200,7 @@ export {
     postCommentVote,
     addNewPost,
     editPost,
+    deletePost,
     addNewComment,
     editComment,
     deleteComment,

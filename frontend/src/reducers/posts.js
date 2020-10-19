@@ -1,4 +1,12 @@
-import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST, COMMENT_COUNT_UP, COMMENT_COUNT_DOWN } from '../constants'
+import {
+    RECEIVE_POSTS,
+    POST_VOTE_UP,
+    POST_VOTE_DOWN,
+    ADD_NEW_POST,
+    DELETE_POST,
+    COMMENT_COUNT_UP,
+    COMMENT_COUNT_DOWN
+} from '../constants'
 
 const posts = (state = {}, action) => {
     switch(action.type) {
@@ -14,6 +22,11 @@ const posts = (state = {}, action) => {
                     ...action.newPost
                 }
             }
+        case DELETE_POST:
+            let currentPosts = { ...state }
+            delete currentPosts[action.postId]
+
+            return currentPosts
         case POST_VOTE_UP:
             return {
                 ...state,

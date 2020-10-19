@@ -1,5 +1,5 @@
-import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST, COMMENT_COUNT_UP, COMMENT_COUNT_DOWN } from '../constants'
-import { postPostVote, addNewPost, editPost } from '../utils/helpers'
+import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST, DELETE_POST, COMMENT_COUNT_UP, COMMENT_COUNT_DOWN } from '../constants'
+import { postPostVote, addNewPost, editPost, deletePost } from '../utils/helpers'
 
 /**
  * thunk actions
@@ -29,6 +29,16 @@ export const handleNewPost = (newPost, edit = false) => {
         .catch(err => {
             console.log('error adding new post', err)
         })
+    }
+}
+
+export const handlePostDelete = (postId) => {
+    return(dispatch) => {
+        deletePost(postId)
+        .then(
+            dispatch(postDelete(postId))
+        )
+        .catch(err => console.log('error deleting post', err))
     }
 }
 
@@ -75,5 +85,12 @@ const newCatPost = (newPost) => {
     return {
         type: ADD_NEW_POST,
         newPost
+    }
+}
+
+const postDelete = (postId) => {
+    return {
+        type: DELETE_POST,
+        postId
     }
 }

@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { handlePostDelete } from '../actions/posts'
 
 /**
  * components
@@ -10,7 +11,7 @@ import CommentCard from '../screens/CommentCard'
 import NewCommentForm from './NewCommentForm'
 
 const PostDetails = (props) => {
-    const { currentPost, postCommentsIds, history } = props
+    const { currentPost, postCommentsIds, history, handlePostDelete } = props
 
     //hooks
     const { post_id } = useParams()
@@ -21,11 +22,18 @@ const PostDetails = (props) => {
         setShowForm(false)
     }
 
+    //called when delete is clicked, deletes post from sever and store then redirects to home page
+    const handleDelete = () => {
+        handlePostDelete(post_id)
+        history.goBack()
+    }
+
     return(
         <div className='post-details'>
             { currentPost !== undefined &&(
                 <Fragment>
-                    <button onClick={() => history.push(`/newPost/${currentPost.category}/${post_id}`)}>Edit</button>
+                    <button onClick={ () => history.push(`/newPost/${currentPost.category}/${post_id}`) }>Edit</button>
+                    <button onClick={ handleDelete }>Delete</button>
                     <article>
                         <h1>{currentPost.title}</h1>
                         <h2>{`By: ${currentPost.author}`}</h2>
@@ -62,4 +70,4 @@ function mapStateToProps({ posts, comments }, route) {
     }
 }
 
-export default connect(mapStateToProps)(PostDetails)
+export default connect(mapStateToProps, { handlePostDelete })(PostDetails)
