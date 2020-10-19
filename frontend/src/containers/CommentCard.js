@@ -1,16 +1,26 @@
 import React, { Fragment, useState } from 'react'
-import Votes from '../containers/Votes'
-import NewCommentForm from '../containers/NewCommentForm'
+import Votes from './Votes'
+import NewCommentForm from './NewCommentForm'
 import { connect } from 'react-redux'
 import { handleDeleteComment } from '../actions/shared'
 
 const CommentCard = (props) => {
-    const { author, body, id, parentId } = props
+    const { author, body, id, parentId, handleDeleteComment } = props
     //determine wether to show edit form or not
     const [edit, setEdit] = useState(false)
 
+    //called when submit btn in new cooment form clicked, sets local state so form is hidden
     const reHideForm = () => {
         setEdit(false)
+    }
+
+    //show dialogue to confirm deletion of comment
+    const handleDeletion = () => {
+        let deleteComment = window.confirm('Delete Comment?')
+
+        if(deleteComment) {
+            handleDeleteComment(id, parentId)
+        }
     }
 
     //if edit is false show the comment data and edit button, if true show only the form to edit the comment
@@ -22,7 +32,7 @@ const CommentCard = (props) => {
                     <p>{body}</p>
                     <Votes id={id} commentTrue={true} />
                     <button onClick={() => setEdit(true)}>Edit</button>
-                    <button onClick={() => props.dispatch(handleDeleteComment(id, parentId)) }>Delete</button>
+                    <button onClick={ handleDeletion }>Delete</button>
                 </Fragment>
             }
         </div>
@@ -37,4 +47,4 @@ function mapStateToProps({ comments }, { id }) {
     }
 }
 
-export default connect(mapStateToProps)(CommentCard)
+export default connect(mapStateToProps, { handleDeleteComment })(CommentCard)

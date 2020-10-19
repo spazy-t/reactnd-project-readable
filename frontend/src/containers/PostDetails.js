@@ -7,7 +7,7 @@ import { handlePostDelete } from '../actions/posts'
  * components
  */
 import Votes from './Votes'
-import CommentCard from '../screens/CommentCard'
+import CommentCard from './CommentCard'
 import NewCommentForm from './NewCommentForm'
 
 const PostDetails = (props) => {
@@ -24,8 +24,12 @@ const PostDetails = (props) => {
 
     //called when delete is clicked, deletes post from sever and store then redirects to home page
     const handleDelete = () => {
-        handlePostDelete(post_id)
-        history.goBack()
+        let deletePost = window.confirm('Delete Post?')
+
+        if(deletePost) {
+            handlePostDelete(post_id)
+            history.goBack()
+        }
     }
 
     return(

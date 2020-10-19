@@ -5,7 +5,16 @@ import { withRouter } from 'react-router-dom'
 import { handlePostDelete } from '../actions/posts'
 
 const PostsCards = (props) => {
-    const { currentPost, history, dispatch } = props
+    const { currentPost, history, handlePostDelete } = props
+
+    //shows dialogue to confirm deletion of post
+    const handleDelete = () => {
+        let deletePost = window.confirm('Delete Post?')
+
+        if(deletePost) {
+            handlePostDelete(currentPost.id)
+        }
+    }
 
     return(
         <div className='posts-card'>
@@ -15,7 +24,7 @@ const PostsCards = (props) => {
                 <p>{ currentPost.commentCount } Comments</p>
             </article>
             <button onClick={() => history.push(`/newPost/${currentPost.category}/${currentPost.id}`)}>Edit</button>
-            <button onClick={() => dispatch(handlePostDelete(currentPost.id))}>Delete</button>
+            <button onClick={ handleDelete }>Delete</button>
             <Votes id={ currentPost.id }/>
         </div>
     )
@@ -28,4 +37,4 @@ function mapStateToProps({ posts }, { id }) {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(PostsCards))
+export default withRouter(connect(mapStateToProps, { handlePostDelete })(PostsCards))
