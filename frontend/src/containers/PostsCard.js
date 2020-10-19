@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Votes from './Votes'
 import { withRouter } from 'react-router-dom'
+import { handlePostDelete } from '../actions/posts'
 
 const PostsCards = (props) => {
-    const { currentPost, history } = props
+    const { currentPost, history, dispatch } = props
 
     return(
         <div className='posts-card'>
@@ -14,6 +15,7 @@ const PostsCards = (props) => {
                 <p>{ currentPost.commentCount } Comments</p>
             </article>
             <button onClick={() => history.push(`/newPost/${currentPost.category}/${currentPost.id}`)}>Edit</button>
+            <button onClick={() => dispatch(handlePostDelete(currentPost.id))}>Delete</button>
             <Votes id={ currentPost.id }/>
         </div>
     )
