@@ -1,7 +1,7 @@
-import { getCategories, getPosts, getComments } from '../utils/helpers'
+import { getCategories, getPosts, getComments, addNewComment, editComment, deleteComment } from '../utils/helpers'
 import { receiveCategories } from './categories'
-import { receivePosts } from './posts'
-import { receiveComments } from './comments'
+import { receivePosts, postCommentUp, postCommentDown } from './posts'
+import { receiveComments, addComment, commentDelete } from './comments'
 
 /**
  * thunk action to grab init data from server (posts and categories)
@@ -23,6 +23,31 @@ export const handleInitData = () => {
         .catch(err => {
             console.log('error retrieving data from server', err)
         })
+    }
+}
+
+//depending on edit boolean the helper method for either the add new comment or edit existing comment is called,
+//also increases the post comment count on success
+export const handleNewComment = (newComment, edit = false) => {
+    return(dispatch) => {
+        return (!edit ? addNewComment(newComment) : editComment(newComment))
+        .then((data) => {
+            dispatch(addComment(data))
+            dispatch(postCommentUp(data.parentId))
+        })
+        .catch(err => console.log('error saving new comment', err))
+    }
+}
+
+//delete comment from server then store if successful, also reduces post comment count by 1
+export const handleDeleteComment = (commentId, postId) => {
+    return (dispatch) => {
+        deleteComment(commentId)
+        .then(() => {
+            dispatch(commentDelete(commentId))
+            dispatch(postCommentDown(postId))
+        })
+        .catch(err => console.log('error deleting comment', err))
     }
 }
 

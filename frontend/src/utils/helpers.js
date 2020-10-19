@@ -151,6 +151,24 @@ const editComment = async (commentDetails) => {
     }
 }
 
+//change comment deleted flag to true on a comment via id in url params
+const deleteComment = async (commentId) => {
+    const res = await fetch(`http://localhost:3001/comments/${commentId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'timmy',
+            'Content-Type': 'application/json'
+        }
+    })
+
+    try {
+        const data = await res.json()
+        return data
+    } catch(e) {
+        console.log('error deleting comment', e)
+    }
+}
+
 //Taken from Udacity would you rather project '_DATA.js' (14/10/2020)
 //generate uniqu id
 const generateUID = () => {
@@ -167,5 +185,6 @@ export {
     editPost,
     addNewComment,
     editComment,
+    deleteComment,
     generateUID
 }

@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST } from '../constants'
+import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST, COMMENT_COUNT_UP, COMMENT_COUNT_DOWN } from '../constants'
 import { postPostVote, addNewPost, editPost } from '../utils/helpers'
 
 /**
@@ -39,6 +39,20 @@ export const receivePosts = (posts) => {
     return {
         type: RECEIVE_POSTS,
         posts
+    }
+}
+
+export const postCommentUp = (postId) => {
+    return {
+        type: COMMENT_COUNT_UP,
+        postId
+    }
+}
+
+export const postCommentDown = (postId) => {
+    return {
+        type: COMMENT_COUNT_DOWN,
+        postId
     }
 }
 

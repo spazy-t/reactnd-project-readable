@@ -36,7 +36,7 @@ const PostDetails = (props) => {
                     <Votes id={post_id} />
                     <div className='comment-list'>
                         { postCommentsIds.map(comment => (
-                            <CommentCard key={comment.id} data={comment} />
+                            <CommentCard key={comment.id} id={comment.id} />
                         ))}
                     </div>
                     { showForm

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { handleNewComment } from '../actions/comments'
+import { handleNewComment } from '../actions/shared'
 import { generateUID } from '../utils/helpers'
 
 const NewCommentForm = (props) => {

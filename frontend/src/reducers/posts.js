@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST } from '../constants'
+import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST, COMMENT_COUNT_UP, COMMENT_COUNT_DOWN } from '../constants'
 
 const posts = (state = {}, action) => {
     switch(action.type) {
@@ -28,6 +28,22 @@ const posts = (state = {}, action) => {
                 [action.postId]: {
                     ...state[action.postId],
                     voteScore: state[action.postId].voteScore - 1
+                }
+            }
+        case COMMENT_COUNT_UP:
+            return {
+                ...state,
+                [action.postId]: {
+                    ...state[action.postId],
+                    commentCount: state[action.postId].commentCount + 1
+                }
+            }
+        case COMMENT_COUNT_DOWN:
+            return {
+                ...state,
+                [action.postId]: {
+                    ...state[action.postId],
+                    commentCount: state[action.postId].commentCount - 1
                 }
             }
         default:
