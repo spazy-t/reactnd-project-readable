@@ -15,7 +15,10 @@ export const handleInitData = () => {
             const postsObj = {}
             posts.forEach(post => {postsObj[post.id] = post})
 
-            dispatch(receiveCategories(cats.categories))
+            const catsObj = {}
+            cats.categories.forEach(cat => {catsObj[cat.name] = cat})
+
+            dispatch(receiveCategories(catsObj))
             dispatch(receivePosts(postsObj))
 
             dispatch(getCurrentComments(postsObj))
@@ -51,15 +54,18 @@ export const handleDeleteComment = (commentId, postId) => {
     }
 }
 
+//gets comments for each post
 const getCurrentComments = (posts) => {
     return(dispatch) => {
         Object.keys(posts).forEach(post => {
             getComments(post)
             .then(data => {
-                const commentObj = {}
-                data.forEach(comment => {commentObj[comment.id] = comment})
-                
-                dispatch(receiveComments(commentObj))
+                if(data.length !== 0) {
+                    const commentObj = {}
+                    data.forEach(comment => {commentObj[comment.id] = comment})
+                    
+                    dispatch(receiveComments(commentObj))
+                }
             })
         })
     }
