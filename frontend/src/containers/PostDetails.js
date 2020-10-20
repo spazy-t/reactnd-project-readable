@@ -10,7 +10,7 @@ import Votes from './Votes'
 import CommentCard from './CommentCard'
 import NewCommentForm from './NewCommentForm'
 import FourOFour from '../screens/FourOFour'
-import { StyledPostDetails, CommentList, AddCommentBtn } from '../styles/main'
+import { StyledPostDetails, CommentList, AddCommentBtn, BtnHolder } from '../styles/main'
 
 const PostDetails = (props) => {
     const { currentPost, postCommentsIds, history, handlePostDelete } = props
@@ -43,14 +43,16 @@ const PostDetails = (props) => {
         <StyledPostDetails>
             { currentPost !== undefined &&(
                 <Fragment>
-                    <button onClick={ () => history.push(`/newPost/${currentPost.category}/${post_id}`) }>Edit</button>
-                    <button onClick={ handleDelete }>Delete</button>
                     <article>
                         <h1>{currentPost.title}</h1>
                         <h2>{`By: ${currentPost.author}`}</h2>
                         <h3>{currentPost.timestamp}</h3>
                         <h3>{`${currentPost.commentCount} Comments`}</h3>
                         <p>{currentPost.body}</p>
+                        <BtnHolder>
+                            <button onClick={ () => history.push(`/newPost/${currentPost.category}/${post_id}`) }>Edit</button>
+                            <button onClick={ handleDelete }>Delete</button>
+                        </BtnHolder>
                     </article>
                     <Votes id={post_id} />
                     <CommentList>

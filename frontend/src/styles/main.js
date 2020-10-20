@@ -63,6 +63,13 @@ export const StyledPostDetails = styled.div`
     }
 `
 
+export const BtnHolder = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+`
+
 export const NewEntryForm = styled.form`
     grid-column-start: 2;
     display: flex;
@@ -90,9 +97,30 @@ export const VoteWidget = styled.div`
 `
 
 export const CommentContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) auto;
+    grid-template-rows: repeat(3, auto);
     border: 1px solid #000;
     text-align: center;
     margin-bottom: 15px;
+
+    ${VoteWidget} {
+        grid-column-start: 3;
+        grid-row-start: 1;
+        grid-row-end: 4;
+    }
+
+    p:nth-child(1) {
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    p:nth-child(2) {
+        grid-row-start: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
 `
 
 export const CommentList = styled.div`
