@@ -9,13 +9,12 @@ import CatList from './containers/CatList'
 import CatScreen from './screens/CatScreen'
 import AddPost from './containers/AddPost'
 import PostDetails from './containers/PostDetails'
-import FourOFour from './screens/FourOFour'
 
 function App(props) {
   //uses hooks to get initial data when app mounts
   useEffect(() => {
     props.dispatch(handleInitData())
-  }, [])
+  })
 
   return (
     <div className="App">
@@ -26,7 +25,6 @@ function App(props) {
         <Route exact path='/newPost/:category' component={ AddPost } />
         <Route path='/newPost/:category/:post_id' component={ AddPost } />
         <Route path='/:category/:post_id' component={ PostDetails } />
-        <Route component={ FourOFour } />
       </Switch>
     </div>
   )

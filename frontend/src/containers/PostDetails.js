@@ -9,6 +9,7 @@ import { handlePostDelete } from '../actions/posts'
 import Votes from './Votes'
 import CommentCard from './CommentCard'
 import NewCommentForm from './NewCommentForm'
+import FourOFour from '../screens/FourOFour'
 
 const PostDetails = (props) => {
     const { currentPost, postCommentsIds, history, handlePostDelete } = props
@@ -30,6 +31,11 @@ const PostDetails = (props) => {
             handlePostDelete(post_id)
             history.goBack()
         }
+    }
+
+    //if user has navigated to non existent post show 404 page
+    if(currentPost === undefined) {
+        return <FourOFour />
     }
 
     return(

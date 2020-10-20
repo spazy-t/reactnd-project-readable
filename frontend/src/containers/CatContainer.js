@@ -2,17 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PostsCard from './PostsCard'
 import { withRouter, Link, useParams, Redirect } from 'react-router-dom'
+import FourOFour from '../screens/FourOFour'
 
 const CatContainer = (props) => {
     const { id, postsForCat, history, categories } = props
     //grabs parameter on url if there, if so then we are in individual category screen
     const { category }  = useParams()
-    console.log('categories', categories + ' category param: ' + category + ' cat in cats: ' + categories[`${category}`])
 
     //TODO: find was of testing the categories length as an obj not array, as as an array it'll only take an index number not a named parameter
-    if(category !== undefined && categories.length !== 0 && categories[category] === undefined) {
-        console.log('redirect')
-        //return <Redirect to='/404' />
+    if(category !== undefined && Object.keys(categories).length !== 0 && categories[category] === undefined) {
+        return <FourOFour />
     }
 
     //determine if we are on the individual category view or main list view
@@ -42,9 +41,8 @@ const CatContainer = (props) => {
 //TODO: for categories bring in the object from state, not an array
 //filters out the posts that have the same category as for this container, then grabs it's id to pass to PostCard component
 function mapStateToProps({ posts, categories }, { id }) {
-    console.log('id sent through:', id)
     return {
-        categories: Object.keys(categories),
+        categories: categories,
         postsForCat: Object.keys(posts).filter(post => posts[post].category === id)
             .map(catPost => (
                 posts[catPost].id
