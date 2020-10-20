@@ -1,17 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import CatContainer from './CatContainer'
+import { CategoryList } from '../styles/main'
 
 //default screen, displays each category and passes through the id to list out the relevant posts for each
 const CatList = (props) => {
     const { currentCategories } = props
 
     return(
-        <div className='cat-list'>
+        <CategoryList>
             {currentCategories.map(category => (
                 <CatContainer key={ category } id={ category } />
             ))}
-        </div>
+        </CategoryList>
     )
 }
 

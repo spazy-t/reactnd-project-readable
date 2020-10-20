@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handleNewPost } from '../actions/posts'
 import { useParams } from 'react-router-dom'
 import { generateUID } from '../utils/helpers'
+import { FormContainer, FormInput, NewEntryForm } from '../styles/main'
 
 const AddPost = (props) => {
     //reads the url parameter to know which category to place a new post into
@@ -38,9 +39,9 @@ const AddPost = (props) => {
     }
 
     return(
-        <div className='form-container'>
-            <form className='new-entry-form' onSubmit={ handleSubmit }>
-                <input
+        <FormContainer>
+            <NewEntryForm onSubmit={ handleSubmit }>
+                <FormInput
                     type='text'
                     className='form-input'
                     value={title}
@@ -48,7 +49,7 @@ const AddPost = (props) => {
                     placeholder='Enter Title'
                     onChange={(evt) => setTitle(evt.target.value)}
                  />
-                <input
+                <FormInput
                     type='text'
                     className='form-input'
                     value={author}
@@ -70,8 +71,8 @@ const AddPost = (props) => {
                 >
                     SUBMIT
                 </button>
-            </form>
-        </div>
+            </NewEntryForm>
+        </FormContainer>
     )
 }
 

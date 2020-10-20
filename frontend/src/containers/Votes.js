@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { handlePostVote } from '../actions/posts'
 import { handleCommentVote } from '../actions/comments'
 import { useLocation } from 'react-router-dom'
+import { VoteWidget } from '../styles/main'
 
 const Votes = (props) => {
     const { id, dispatch, postVoteNum, commentTrue } = props
@@ -11,13 +12,14 @@ const Votes = (props) => {
     //based on boolean sent in from parent component, determine which action to use to change vote for comment or post
     const voteAction = !commentTrue ? handlePostVote : handleCommentVote
 
-    //https://programmingwithmosh.com/react/multiple-css-classes-react/ (15/10/2020)
+    //https://styled-components.com/docs/basics#passed-props (20/10/2020)
+    //shows vote component but displays in grid if in details screen via passing styled component a prop
     return(
-        <div className={ `vote-widget ${detailsScreen ? 'details-vote' : ''}` }>
+        <VoteWidget columnNum={ detailsScreen ? 3 : 'none' }>
             <button onClick={() => dispatch(voteAction(id, 'upVote'))}>+</button>
             <p>{postVoteNum}</p>
             <button onClick={() => dispatch(voteAction(id, 'downVote'))}>-</button>
-        </div>
+        </VoteWidget>
     )
 }
 

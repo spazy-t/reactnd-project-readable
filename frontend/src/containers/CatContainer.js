@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PostsCard from './PostsCard'
-import { withRouter, Link, useParams, Redirect } from 'react-router-dom'
+import { withRouter, Link, useParams } from 'react-router-dom'
 import FourOFour from '../screens/FourOFour'
+import { StyledCategory } from '../styles/main'
 
 const CatContainer = (props) => {
     const { id, postsForCat, history, categories } = props
@@ -17,7 +18,7 @@ const CatContainer = (props) => {
     //determine if we are on the individual category view or main list view
     //if individual view disable the link
     return(
-        <div className='cat-container'>
+        <StyledCategory>
             {category !== id
                 ? <Link to={`/${id}`}>
                     <h2>{id}</h2>
@@ -34,7 +35,7 @@ const CatContainer = (props) => {
                 }
             </section>
             <button onClick={() => history.push(`/newPost/${id}`)}>Add Post</button>
-        </div>
+        </StyledCategory>
     )
 }
 

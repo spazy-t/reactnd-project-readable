@@ -10,6 +10,7 @@ import Votes from './Votes'
 import CommentCard from './CommentCard'
 import NewCommentForm from './NewCommentForm'
 import FourOFour from '../screens/FourOFour'
+import { StyledPostDetails, CommentList, AddCommentBtn } from '../styles/main'
 
 const PostDetails = (props) => {
     const { currentPost, postCommentsIds, history, handlePostDelete } = props
@@ -39,7 +40,7 @@ const PostDetails = (props) => {
     }
 
     return(
-        <div className='post-details'>
+        <StyledPostDetails>
             { currentPost !== undefined &&(
                 <Fragment>
                     <button onClick={ () => history.push(`/newPost/${currentPost.category}/${post_id}`) }>Edit</button>
@@ -52,22 +53,21 @@ const PostDetails = (props) => {
                         <p>{currentPost.body}</p>
                     </article>
                     <Votes id={post_id} />
-                    <div className='comment-list'>
+                    <CommentList>
                         { postCommentsIds.map(comment => (
                             <CommentCard key={comment.id} id={comment.id} />
                         ))}
-                    </div>
+                    </CommentList>
                     { showForm
                         ? <NewCommentForm parentId={post_id} hideForm={hideForm} />
-                        : <button
-                            className='add-comment-btn'
+                        : <AddCommentBtn
                             onClick={() => setShowForm(true)}>
                                 Add Comment
-                        </button>
+                        </AddCommentBtn>
                     }
                 </Fragment>
             )}
-        </div>
+        </StyledPostDetails>
     )
 }
 

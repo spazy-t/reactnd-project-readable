@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Votes from './Votes'
 import { withRouter } from 'react-router-dom'
 import { handlePostDelete } from '../actions/posts'
+import { PostsCard } from '../styles/main'
 
 const PostsCards = (props) => {
     const { currentPost, history, handlePostDelete } = props
@@ -17,7 +18,7 @@ const PostsCards = (props) => {
     }
 
     return(
-        <div className='posts-card'>
+        <PostsCard>
             <article onClick={() => history.push(`${currentPost.category}/${currentPost.id}`)}>
                 <p>{ currentPost.title }</p>
                 <p>By: { currentPost.author }</p>
@@ -26,7 +27,7 @@ const PostsCards = (props) => {
             <button onClick={() => history.push(`/newPost/${currentPost.category}/${currentPost.id}`)}>Edit</button>
             <button onClick={ handleDelete }>Delete</button>
             <Votes id={ currentPost.id }/>
-        </div>
+        </PostsCard>
     )
 }
 

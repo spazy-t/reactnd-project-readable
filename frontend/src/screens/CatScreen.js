@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, Redirect } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import CatContainer from '../containers/CatContainer'
 
 const CatScreen = () => {

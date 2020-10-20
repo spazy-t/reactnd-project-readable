@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { handleNewComment } from '../actions/shared'
 import { generateUID } from '../utils/helpers'
+import { CommentForm } from '../styles/main'
 
 const NewCommentForm = (props) => {
     const { handleNewComment, parentId, hideForm = null, editAuthor, editBody, id } = props
@@ -30,7 +31,7 @@ const NewCommentForm = (props) => {
     }
 
     return(
-        <form className='comment-form' onSubmit={handleSubmit}>
+        <CommentForm onSubmit={handleSubmit}>
             <input
                 value={author}
                 onChange={(evt) => setAuthor(evt.target.value)}
@@ -49,7 +50,7 @@ const NewCommentForm = (props) => {
             >
                 Submit
             </button>
-        </form>
+        </CommentForm>
     )
 }
 

@@ -3,6 +3,7 @@ import Votes from './Votes'
 import NewCommentForm from './NewCommentForm'
 import { connect } from 'react-redux'
 import { handleDeleteComment } from '../actions/shared'
+import { CommentContainer } from '../styles/main'
 
 const CommentCard = (props) => {
     const { author, body, id, parentId, handleDeleteComment } = props
@@ -25,7 +26,7 @@ const CommentCard = (props) => {
 
     //if edit is false show the comment data and edit button, if true show only the form to edit the comment
     return(
-        <div className='comment-container'>
+        <CommentContainer>
             {edit ? <NewCommentForm id={id} editBody={body} editAuthor={author} hideForm={reHideForm} />
                 : <Fragment>
                     <p>{author}</p>
@@ -35,7 +36,7 @@ const CommentCard = (props) => {
                     <button onClick={ handleDeletion }>Delete</button>
                 </Fragment>
             }
-        </div>
+        </CommentContainer>
     )
 }
 
