@@ -1,13 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap');
+
 html,
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    background-color: #b5b5b5;
+}
+
+footer {
+    height: 30px;
 }
 
 button {
     cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 5px;
+    border-radius: 0.5em;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #6b6b6b;
+}
+
+button:active {
+    color: #000;
+}
+
+button:hover {
+    background-color: #6b6b6b;
 }
 
 button:disabled {

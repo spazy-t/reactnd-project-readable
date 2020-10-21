@@ -1,26 +1,35 @@
 import styled from 'styled-components'
 
 export const StyledCategory = styled.div`
-    min-width: 300px;
+    width: 20em;
     display: flex;
     flex-direction: column;
     border: 1px solid #000;
     margin-top: 20px;
+    padding: 10px;
+    box-shadow: 5px 6px 7px;
+    background-color: #fff;
 
     h2 {
-        border: 1px solid red;
         cursor: pointer;
+        text-align: center;
+        text-transform: capitalize;
+        color: #000;
     }
 
     button {
         align-self: center;
         cursor: pointer;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
+        padding: 10px;
     }
 
     section {
-        border: 1px solid green;
         margin-bottom: 15px;
+    }
+
+    select {
+        cursor: pointer;
     }
 `
 
@@ -30,13 +39,61 @@ export const CategoryList = styled.div`
     align-items: center;
 `
 
-export const PostsCard = styled.div`
-    width: 100%;
-    max-width: 300px;
+export const IndieCat = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+`
+
+export const VoteWidget = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     justify-content: space-between;
+    width: fit-content;
+    grid-column-start: ${ props => props.columnNum };
+
+    button {
+        margin-bottom: 0;
+    }
+`
+
+export const PostsCard = styled.div`
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) auto;
+    grid-template-rows: repeat(2, auto);
     cursor: pointer;
+    border: 1px solid #000;
+    margin-top: 10px;
+    padding: 10px;
+
+    ${VoteWidget} {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 3;
+        grid-column-end: 3;
+        margin-left: 10px;
+    }
+
+    article {
+        grid-row-start: 1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        margin-left: 5px;
+    }
+
+    button {
+        grid-row-start: 2;
+        margin-bottom: 0;
+        padding: 5px 10px;
+    }
+
+    h3 {
+        margin-top: 0;
+        font-size: 1.2em
+    }
 `
 
 export const FormContainer = styled.div`
@@ -54,12 +111,24 @@ export const StyledPostDetails = styled.div`
     grid-template-rows: repeat(2, auto);
 
     article {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: repeat(6, auto);
         text-align: center;
         align-self: center;
         grid-column-start: 2;
         grid-row-start: 1;
+        background-color: #fff;
+        border: 1px solid #000;
+        box-shadow: 5px 6px 7px;
+        margin-bottom: 15px;
+
+        ${VoteWidget} {
+            grid-column-start: 2;
+            grid-row-start: 1;
+            grid-row-end: 7;
+            padding: 10px;
+        }
     }
 `
 
@@ -74,25 +143,15 @@ export const NewEntryForm = styled.form`
     grid-column-start: 2;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    padding: 25px;
+    border: 1px solid #000;
+    box-shadow: 5px 6px 7px;
 
     textarea {
         height: 100px;
         resize: none;
         margin-bottom: 15px;
-    }
-`
-
-export const VoteWidget = styled.div`
-    display: flex;
-    flex-direction: column;
-    border: 1px solid blue;
-    text-align: center;
-    justify-content: space-around;
-    width: fit-content;
-    grid-column-start: ${ props => props.columnNum };
-
-    button {
-        margin-bottom: 0;
     }
 `
 
@@ -103,6 +162,9 @@ export const CommentContainer = styled.div`
     border: 1px solid #000;
     text-align: center;
     margin-bottom: 15px;
+    background-color: #e0e0e0;
+    box-shadow: 5px 6px 7px;
+    padding: 10px;
 
     ${VoteWidget} {
         grid-column-start: 3;

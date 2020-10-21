@@ -22,10 +22,11 @@ function App(props) {
       <Switch>
         <Route exact path='/' component={ CatList } />
         <Route exact path='/:category' component={ CatScreen } />
-        <Route exact path='/newPost/:category' component={ AddPost } />
-        <Route path='/newPost/:category/:post_id' component={ AddPost } />
+        <Route exact path='/newpost/:category' component={ AddPost } />
+        <Route path='/newpost/:category/:post_id' component={ AddPost } />
         <Route path='/:category/:post_id' component={ PostDetails } />
       </Switch>
+      <footer></footer>
     </div>
   )
 }

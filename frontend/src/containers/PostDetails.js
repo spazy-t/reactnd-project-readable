@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { handlePostDelete } from '../actions/posts'
@@ -14,6 +14,7 @@ import { StyledPostDetails, CommentList, AddCommentBtn, BtnHolder } from '../sty
 
 const PostDetails = (props) => {
     const { currentPost, postCommentsIds, history, handlePostDelete } = props
+    let dateObj = ''
 
     //hooks
     const { post_id } = useParams()
@@ -37,38 +38,37 @@ const PostDetails = (props) => {
     //if user has navigated to non existent post show 404 page
     if(currentPost === undefined) {
         return <FourOFour />
+    } else {
+        dateObj = new Date(currentPost.timestamp)
+        dateObj = `${dateObj.getDay()} / ${dateObj.getMonth()} / ${dateObj.getFullYear()}`
     }
-
+    //TODO: timestamp to actual date
     return(
         <StyledPostDetails>
-            { currentPost !== undefined &&(
-                <Fragment>
-                    <article>
-                        <h1>{currentPost.title}</h1>
-                        <h2>{`By: ${currentPost.author}`}</h2>
-                        <h3>{currentPost.timestamp}</h3>
-                        <h3>{`${currentPost.commentCount} Comments`}</h3>
-                        <p>{currentPost.body}</p>
-                        <BtnHolder>
-                            <button onClick={ () => history.push(`/newPost/${currentPost.category}/${post_id}`) }>Edit</button>
-                            <button onClick={ handleDelete }>Delete</button>
-                        </BtnHolder>
-                    </article>
-                    <Votes id={post_id} />
-                    <CommentList>
-                        { postCommentsIds.map(comment => (
-                            <CommentCard key={comment.id} id={comment.id} />
-                        ))}
-                    </CommentList>
-                    { showForm
-                        ? <NewCommentForm parentId={post_id} hideForm={hideForm} />
-                        : <AddCommentBtn
-                            onClick={() => setShowForm(true)}>
-                                Add Comment
-                        </AddCommentBtn>
-                    }
-                </Fragment>
-            )}
+            <article>
+                <h1>{currentPost.title}</h1>
+                <h2>{`By: ${currentPost.author}`}</h2>
+                <h3>{dateObj.toString()}</h3>
+                <h3>{`${currentPost.commentCount} Comments`}</h3>
+                <p>{currentPost.body}</p>
+                <BtnHolder>
+                    <button onClick={ () => history.push(`/newpost/${currentPost.category}/${post_id}`) }>Edit</button>
+                    <button onClick={ handleDelete }>Delete</button>
+                </BtnHolder>
+                <Votes id={post_id} />
+            </article>
+            <CommentList>
+                { postCommentsIds.map(comment => (
+                    <CommentCard key={comment.id} id={comment.id} />
+                ))}
+            </CommentList>
+            { showForm
+                ? <NewCommentForm parentId={post_id} hideForm={hideForm} />
+                : <AddCommentBtn
+                    onClick={() => setShowForm(true)}>
+                        Add Comment
+                </AddCommentBtn>
+            }
         </StyledPostDetails>
     )
 }

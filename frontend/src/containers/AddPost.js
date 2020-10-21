@@ -7,7 +7,6 @@ import { FormContainer, FormInput, NewEntryForm } from '../styles/main'
 
 const AddPost = (props) => {
     //reads the url parameter to know which category to place a new post into
-    //TODO: validate url param to be one of the categories or 404 them!
     const { category, post_id } = useParams()
     const { editTitle, editAuthor, editBody, handleNewPost, history } = props
 
@@ -76,15 +75,18 @@ const AddPost = (props) => {
     )
 }
 
+//TODO:how do I get post data when ulr is refreshed i.e. reloaded. Currently it loads page before posts are in store.
 //map post body, title, and author from state if post is being edited
 function mapStateToProps({ posts }, route) {
     if (route.match.params.post_id !== undefined) {
         const { post_id } = route.match.params
 
-        return {
-            editTitle: posts[post_id].title,
-            editAuthor: posts[post_id].author,
-            editBody: posts[post_id].body
+        if(posts[post_id] !== undefined) {
+            return {
+                editTitle: posts[post_id].title,
+                editAuthor: posts[post_id].author,
+                editBody: posts[post_id].body
+            }   
         }
     } else {
         return {}

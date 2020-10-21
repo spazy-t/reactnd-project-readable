@@ -17,7 +17,7 @@ const Votes = (props) => {
     return(
         <VoteWidget columnNum={ detailsScreen ? 3 : 'none' }>
             <button onClick={() => dispatch(voteAction(id, 'upVote'))}>+</button>
-            <p>{postVoteNum}</p>
+            <h4>{postVoteNum}</h4>
             <button onClick={() => dispatch(voteAction(id, 'downVote'))}>-</button>
         </VoteWidget>
     )

@@ -50,7 +50,7 @@ const CatContainer =  (props) => {
                     : `No posts currently!`
                 }
             </section>
-            <button onClick={() => history.push(`/newPost/${id}`)}>Add Post</button>
+            <button onClick={() => history.push(`/newpost/${id}`)}>Add Post</button>
         </StyledCategory>
     )
 }
