@@ -264,3 +264,23 @@ export const StyledNav = styled.nav`
         color: #ccc;
     }
 `
+
+export const FofContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 0 15px 15px 15px;
+    width: 15em;
+    border: 1px solid #000;
+    box-shadow: 5px 6px 7px;
+
+    a {
+        color: #000;
+        font-weight: bold;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+`

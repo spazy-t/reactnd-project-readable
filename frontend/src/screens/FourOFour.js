@@ -1,11 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { FofContainer } from '../styles/main'
 
 const FourOFour = () => {
 
     return(
-        <div className='fof-container'>
+        <FofContainer>
             <h1>404</h1>
-        </div>
+            <h2>Whooopsie!</h2>
+            <Link to='/'>To Home</Link>
+        </FofContainer>
     )
 }
 
