@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const StyledCategory = styled.div`
-    width: 20em;
+    width: 85%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     border: 1px solid #000;
@@ -40,14 +41,14 @@ export const CategoryList = styled.div`
 
     @media (min-width: 900px) {
         display: grid;
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(2, 1fr);
         justify-items: center;
         align-items: flex-start;
     }
 
     @media (min-width: 1200px) {
         display: grid;
-        grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         align-items: flex-start;
     }
@@ -124,6 +125,11 @@ export const CommentForm = styled.form`
     display: flex;
     flex-direction: column;
     grid-column-start: 2;
+    width: 85%;
+
+    @media (min-width: 768px) {
+        width: 95%;
+    }
 
     .form-input {
         margin-bottom: 10px;
@@ -136,16 +142,18 @@ export const CommentForm = styled.form`
 `
 
 export const StyledPostDetails = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 
     article {
         display: grid;
+        width: 85%;
+        max-width: 600px;
         grid-template-columns: 1fr auto;
         grid-template-rows: repeat(6, auto);
         text-align: center;
-        align-self: center;
         grid-column-start: 2;
         grid-row-start: 1;
         background-color: #fff;
@@ -178,7 +186,7 @@ export const BtnHolder = styled.div`
 
     button {
         padding: 5px;
-        width: 10em;
+        width: 8em;
     }
 `
 
@@ -190,6 +198,7 @@ export const NewEntryForm = styled.form`
     border: 1px solid #000;
     box-shadow: 5px 6px 7px;
     width: 85%;
+    max-width: 600px;
     align-self: center;
 
     textarea {
@@ -205,6 +214,7 @@ export const NewEntryForm = styled.form`
 
 export const CommentContainer = styled.div`
     display: grid;
+    width: 85%;
     grid-template-columns: repeat(2, 1fr) auto;
     grid-template-rows: repeat(3, auto);
     border: 1px solid #000;
@@ -213,6 +223,10 @@ export const CommentContainer = styled.div`
     background-color: #e0e0e0;
     box-shadow: 5px 6px 7px;
     padding: 10px;
+
+    @media (min-width: 768px) {
+        width: 95%;
+    }
 
     ${VoteWidget} {
         grid-column-start: 3;
@@ -239,18 +253,20 @@ export const CommentContainer = styled.div`
         border: none;
         padding: 0;
         box-shadow: none;
+        width: 100%;
     }
 `
 
 export const CommentList = styled.div`
-    grid-column-start: 2;
-    grid-row-start: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
 `
 
 export const AddCommentBtn = styled.button`
-    grid-column-start: 2;
     width: fit-content;
-    justify-self: center;
     margin-bottom: 25px;
     padding: 10px;
 `

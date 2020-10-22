@@ -61,14 +61,14 @@ const PostDetails = (props) => {
                 { postCommentsIds.map(comment => (
                     <CommentCard key={comment.id} id={comment.id} />
                 ))}
-            </CommentList>
-            { showForm
+                { showForm
                 ? <NewCommentForm parentId={post_id} hideForm={hideForm} />
                 : <AddCommentBtn
                     onClick={() => setShowForm(true)}>
                         Add Comment
-                </AddCommentBtn>
-            }
+                    </AddCommentBtn>
+                }
+            </CommentList>
         </StyledPostDetails>
     )
 }
