@@ -9,6 +9,7 @@ import CatList from './containers/CatList'
 import CatScreen from './screens/CatScreen'
 import AddPost from './containers/AddPost'
 import PostDetails from './containers/PostDetails'
+import Nav from './screens/Nav'
 
 function App(props) {
   //uses hooks to get initial data when app mounts
@@ -18,7 +19,9 @@ function App(props) {
 
   return (
     <div className="App">
-      <header className="App-header" />
+      <header className="App-header">
+        <Nav />
+      </header>
       <Switch>
         <Route exact path='/' component={ CatList } />
         <Route exact path='/:category' component={ CatScreen } />

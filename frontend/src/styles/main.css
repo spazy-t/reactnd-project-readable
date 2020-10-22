@@ -12,7 +12,8 @@ body {
 }
 
 header {
-    height: 30px;
+    height: auto;
+    margin-bottom: 25px;
 }
 
 footer {

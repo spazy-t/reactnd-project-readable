@@ -240,3 +240,27 @@ export const AddCommentBtn = styled.button`
     margin-bottom: 25px;
     padding: 10px;
 `
+
+export const StyledNav = styled.nav`
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px 0;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    .nav-btn {
+        color: #fff;
+
+        &:hover {
+            color: #ccc;
+        }
+    }
+
+    .nav-active {
+        color: #ccc;
+    }
+`
