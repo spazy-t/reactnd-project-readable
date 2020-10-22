@@ -105,6 +105,16 @@ export const FormInput = styled.input`
     margin-bottom: 15px;
 `
 
+export const CommentForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 2;
+
+    .form-input {
+        margin-bottom: 10px;
+    }
+`
+
 export const StyledPostDetails = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -130,6 +140,13 @@ export const StyledPostDetails = styled.div`
             padding: 10px;
         }
     }
+
+    ${CommentForm} {
+        background-color: #fff;
+        border: 1px solid #000;
+        padding: 10px;
+        box-shadow: 5px 6px 7px;
+    }
 `
 
 export const BtnHolder = styled.div`
@@ -137,6 +154,11 @@ export const BtnHolder = styled.div`
     flex-direction: row;
     justify-content: space-around;
     margin-bottom: 10px;
+
+    button {
+        padding: 5px;
+        width: 10em;
+    }
 `
 
 export const NewEntryForm = styled.form`
@@ -152,6 +174,10 @@ export const NewEntryForm = styled.form`
         height: 100px;
         resize: none;
         margin-bottom: 15px;
+    }
+
+    button {
+        padding: 5px;
     }
 `
 
@@ -183,6 +209,15 @@ export const CommentContainer = styled.div`
         grid-column-start: 1;
         grid-column-end: 3;
     }
+
+    ${CommentForm} {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        background-color: #e0e0e0;
+        border: none;
+        padding: 0;
+        box-shadow: none;
+    }
 `
 
 export const CommentList = styled.div`
@@ -195,10 +230,5 @@ export const AddCommentBtn = styled.button`
     width: fit-content;
     justify-self: center;
     margin-bottom: 25px;
-`
-
-export const CommentForm = styled.form`
-    display: flex;
-    flex-direction: column;
-    grid-column-start: 2;
+    padding: 10px;
 `
