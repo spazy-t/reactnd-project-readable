@@ -37,6 +37,20 @@ export const CategoryList = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (min-width: 900px) {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        justify-items: center;
+        align-items: flex-start;
+    }
+
+    @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        justify-items: center;
+        align-items: flex-start;
+    }
 `
 
 export const IndieCat = styled.div`
