@@ -11,6 +11,10 @@ body {
     background-color: #b5b5b5;
 }
 
+header {
+    height: 30px;
+}
+
 footer {
     height: 30px;
 }

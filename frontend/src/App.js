@@ -18,7 +18,7 @@ function App(props) {
 
   return (
     <div className="App">
-      <header className="App-header">Header</header>
+      <header className="App-header" />
       <Switch>
         <Route exact path='/' component={ CatList } />
         <Route exact path='/:category' component={ CatScreen } />

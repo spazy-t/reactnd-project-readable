@@ -97,8 +97,9 @@ export const PostsCard = styled.div`
 `
 
 export const FormContainer = styled.div`
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 `
 
 export const FormInput = styled.input`
@@ -112,6 +113,11 @@ export const CommentForm = styled.form`
 
     .form-input {
         margin-bottom: 10px;
+    }
+
+    textarea {
+        resize: none;
+        height: 5em;
     }
 `
 
@@ -132,12 +138,13 @@ export const StyledPostDetails = styled.div`
         border: 1px solid #000;
         box-shadow: 5px 6px 7px;
         margin-bottom: 15px;
+        padding: 10px;
 
         ${VoteWidget} {
             grid-column-start: 2;
             grid-row-start: 1;
             grid-row-end: 7;
-            padding: 10px;
+            padding: 10px 0;
         }
     }
 
@@ -162,13 +169,14 @@ export const BtnHolder = styled.div`
 `
 
 export const NewEntryForm = styled.form`
-    grid-column-start: 2;
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    padding: 25px;
+    padding: 15px;
     border: 1px solid #000;
     box-shadow: 5px 6px 7px;
+    width: 85%;
+    align-self: center;
 
     textarea {
         height: 100px;
