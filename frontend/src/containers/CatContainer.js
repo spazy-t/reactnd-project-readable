@@ -38,10 +38,12 @@ const CatContainer =  (props) => {
                 </Link>
                 : <h2>{id}</h2>
             }
-            <select onChange={(evt) => setSort(evt.target.value)}>
-                <option value='voteScore'>Order by Score</option>
-                <option value='timestamp'>Order by Date</option>
-            </select>
+            {orderedPosts.length !== 0 &&(
+                <select onChange={(evt) => setSort(evt.target.value)}>
+                    <option value='voteScore'>Order by Score</option>
+                    <option value='timestamp'>Order by Date</option>
+                </select>
+            )}
             <section>
                 {orderedPosts.length !== 0
                     ? orderedPosts.map(post => (
