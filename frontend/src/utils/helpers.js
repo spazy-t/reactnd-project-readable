@@ -1,8 +1,13 @@
 //TODO: set token in env file
+const token = 'admin'
+
+/**
+ * helper methods to call server methods and return data to use for store state etc
+ */
 
 //grabs all the current categories from the server
 const getCategories = async () => {
-    const res = await fetch('http://localhost:3001/categories', { headers: { 'Authorization': 'timmy' }})
+    const res = await fetch('http://localhost:3001/categories', { headers: { 'Authorization': token }})
 
     try {
         const data = await res.json()
@@ -14,7 +19,7 @@ const getCategories = async () => {
 
 //grabs all posts from the server
 const getPosts = async () => {
-    const res = await fetch('http://localhost:3001/posts', { headers: { 'Authorization': 'timmy' }})
+    const res = await fetch('http://localhost:3001/posts', { headers: { 'Authorization': token }})
 
     try {
         const data = await res.json()
@@ -26,7 +31,7 @@ const getPosts = async () => {
 
 //comments only exist for posts so called only when looking at a post, gets comments for a post from server
 const getComments = async (id) => {
-    const res = await fetch(`http://localhost:3001/posts/${id}/comments`, { headers: { 'Authorization': 'timmy' }})
+    const res = await fetch(`http://localhost:3001/posts/${id}/comments`, { headers: { 'Authorization': token }})
 
     try {
         const data = await res.json()
@@ -42,7 +47,7 @@ const postPostVote = async (id, voteOption) => {
     const res = await fetch(`http://localhost:3001/posts/${id}`, {
         method: 'POST',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(voteOption)
@@ -61,7 +66,7 @@ const postCommentVote = async (commentId, voteOption) => {
     const res = await fetch(`http://localhost:3001/comments/${commentId}`, {
         method: 'POST',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(voteOption)
@@ -80,7 +85,7 @@ const addNewPost = async (postDetails) => {
     const res = await fetch('http://localhost:3001/posts', {
         method: 'POST',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(postDetails)
@@ -99,7 +104,7 @@ const editPost = async (postDetails) => {
     const res = await fetch(`http://localhost:3001/posts/${postDetails.id}`, {
         method: 'PUT',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(postDetails)
@@ -118,7 +123,7 @@ const addNewComment = async (commentDetails) => {
     const res = await fetch('http://localhost:3001/comments', {
         method: 'POST',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(commentDetails)
@@ -137,7 +142,7 @@ const editComment = async (commentDetails) => {
     const res = await fetch(`http://localhost:3001/comments/${commentDetails.id}`, {
         method: 'PUT',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(commentDetails)
@@ -156,7 +161,7 @@ const deleteComment = async (commentId) => {
     const res = await fetch(`http://localhost:3001/comments/${commentId}`, {
         method: 'DELETE',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         }
     })
@@ -169,11 +174,12 @@ const deleteComment = async (commentId) => {
     }
 }
 
+//deletes post from db via it's id passed in
 const deletePost = async (postId) => {
     const res = await fetch(`http://localhost:3001/posts/${postId}`, {
         method: 'DELETE',
         headers: {
-            'Authorization': 'timmy',
+            'Authorization': token,
             'Content-Type': 'application/json'
         }
     })

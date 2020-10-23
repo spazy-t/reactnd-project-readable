@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+/**
+ * styled components for more complex styling using nested styles
+ * and dynamic identifiers and porps passed in.
+ */
+
 export const StyledCategory = styled.div`
     width: 85%;
     max-width: 400px;
@@ -59,7 +64,7 @@ export const IndieCat = styled.div`
     flex-direction: column;
     align-items: center;
 `
-
+//props passed in from component nesting it to determine layout position
 export const VoteWidget = styled.div`
     display: flex;
     flex-direction: column;
@@ -72,7 +77,7 @@ export const VoteWidget = styled.div`
         margin-bottom: 0;
     }
 `
-
+//referencing the VoteWidget styledComponent nested in this component
 export const PostsCard = styled.div`
     width: auto;
     display: grid;
@@ -140,7 +145,7 @@ export const CommentForm = styled.form`
         height: 5em;
     }
 `
-
+//references to commentForm and voteWidget styledComponents nested in this component
 export const StyledPostDetails = styled.div`
     display: flex;
     flex-direction: column;

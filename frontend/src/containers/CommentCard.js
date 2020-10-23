@@ -7,10 +7,10 @@ import { CommentContainer } from '../styles/main'
 
 const CommentCard = (props) => {
     const { author, body, id, parentId, handleDeleteComment } = props
-    //determine wether to show edit form or not
+    //local state to determine wether to show edit form or not
     const [edit, setEdit] = useState(false)
 
-    //called when submit btn in new cooment form clicked, sets local state so form is hidden
+    //called when submit btn in new comment form clicked, sets local state so form is hidden
     const reHideForm = () => {
         setEdit(false)
     }
@@ -27,12 +27,12 @@ const CommentCard = (props) => {
     //if edit is false show the comment data and edit button, if true show only the form to edit the comment
     return(
         <CommentContainer>
-            {edit ? <NewCommentForm id={id} editBody={body} editAuthor={author} hideForm={reHideForm} />
+            {edit ? <NewCommentForm id={ id } editBody={ body } editAuthor={ author } hideForm={ reHideForm } />
                 : <Fragment>
-                    <p>{author}</p>
-                    <p>{body}</p>
-                    <Votes id={id} commentTrue={true} />
-                    <button onClick={() => setEdit(true)}>Edit</button>
+                    <p>{ author }</p>
+                    <p>{ body }</p>
+                    <Votes id={ id } commentTrue={ true } />
+                    <button onClick={ () => setEdit(true) }>Edit</button>
                     <button onClick={ handleDeletion }>Delete</button>
                 </Fragment>
             }
@@ -40,6 +40,7 @@ const CommentCard = (props) => {
     )
 }
 
+//grabs comment dat to display in card
 function mapStateToProps({ comments }, { id }) {
     return {
         body: comments[id].body,

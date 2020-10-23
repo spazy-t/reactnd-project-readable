@@ -1,6 +1,12 @@
-import { RECEIVE_COMMENTS, COMMENT_VOTE_UP, COMMENT_VOTE_DOWN, ADD_NEW_COMMENT, DELETE_COMMENT } from '../constants'
+import {
+    RECEIVE_COMMENTS,
+    COMMENT_VOTE_UP,
+    COMMENT_VOTE_DOWN,
+    ADD_NEW_COMMENT,
+    DELETE_COMMENT
+} from '../constants'
 
-//TODO: refactor as comments are only sent in when looking at a post detail screen, so need to be put into a postId obj/array?
+//put comments into store state, set comment vote number, add a new comment to state, delete a comment from state
 const comments = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_COMMENTS:

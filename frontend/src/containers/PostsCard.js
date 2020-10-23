@@ -19,12 +19,12 @@ const PostsCards = (props) => {
 
     return(
         <PostsCard>
-            <article onClick={() => history.push(`${currentPost.category}/${currentPost.id}`)}>
+            <article onClick={ () => history.push(`${currentPost.category}/${currentPost.id}`) }>
                 <h3>{ currentPost.title }</h3>
                 <p>By: { currentPost.author }</p>
                 <p>{ currentPost.commentCount } Comments</p>
             </article>
-            <button onClick={() => history.push(`/newpost/${currentPost.category}/${currentPost.id}`)}>Edit</button>
+            <button onClick={ () => history.push(`/newpost/${currentPost.category}/${currentPost.id}`) }>Edit</button>
             <button onClick={ handleDelete }>Delete</button>
             <Votes id={ currentPost.id }/>
         </PostsCard>

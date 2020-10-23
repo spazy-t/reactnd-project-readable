@@ -8,6 +8,8 @@ import {
     COMMENT_COUNT_DOWN
 } from '../constants'
 
+//posts reducer: put posts into state from db, add a new post to state, delete a post from state, update vote number for post
+//and alter comment count for post when one is added or deleted
 const posts = (state = {}, action) => {
     switch(action.type) {
         case RECEIVE_POSTS:

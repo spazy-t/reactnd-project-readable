@@ -1,3 +1,4 @@
+//logger middleware to show what actions are executed and resulting new state
 const logger = (store) => (next) => (action) => {
     console.group(action.type)
         console.log('The action: ', action)

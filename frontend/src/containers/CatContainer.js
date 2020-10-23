@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import PostsCard from './PostsCard'
-import { withRouter, Link, useParams } from 'react-router-dom'
+import {
+    withRouter,
+    Link,
+    useParams
+} from 'react-router-dom'
 import FourOFour from '../screens/FourOFour'
 import { StyledCategory } from '../styles/main'
 
 const CatContainer =  (props) => {
+    //global to hold sorted posts
     let orderedPosts= []
+
     const { id, postsForCat, allPosts, history, categories } = props
     //grabs parameter on url if there, if so then we are in individual category screen
     const { category }  = useParams()
@@ -21,6 +27,7 @@ const CatContainer =  (props) => {
         })
     }
 
+    //call helper to sort posts when component mounts / updates
     orderPosts()
 
     //if not on root screen and we have gotten categories from store but url points to unknown category, show 404
@@ -29,17 +36,17 @@ const CatContainer =  (props) => {
     }
 
     //determine if we are on the individual category view or main list view
-    //if individual view disable the link
+    //if individual view disable the link in header
     return(
         <StyledCategory>
             {category !== id
-                ? <Link to={`/${id}`}>
-                    <h2>{id}</h2>
+                ? <Link to={ `/${id}` }>
+                    <h2>{ id }</h2>
                 </Link>
-                : <h2>{id}</h2>
+                : <h2>{ id }</h2>
             }
             {orderedPosts.length !== 0 &&(
-                <select onChange={(evt) => setSort(evt.target.value)}>
+                <select onChange={ (evt) => setSort(evt.target.value) }>
                     <option value='voteScore'>Order by Score</option>
                     <option value='timestamp'>Order by Date</option>
                 </select>
@@ -52,7 +59,7 @@ const CatContainer =  (props) => {
                     : `No posts currently!`
                 }
             </section>
-            <button onClick={() => history.push(`/newpost/${id}`)}>Add Post</button>
+            <button onClick={ () => history.push(`/newpost/${id}`) }>Add Post</button>
         </StyledCategory>
     )
 }

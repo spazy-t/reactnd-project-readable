@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react'
 import { handleInitData } from './actions/shared'
 import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import {
+  Route,
+  Switch
+} from 'react-router-dom'
 /**
  * components
  */
@@ -12,11 +15,13 @@ import PostDetails from './containers/PostDetails'
 import Nav from './screens/Nav'
 
 function App(props) {
-  //uses hooks to get initial data when app mounts
+  //TODO: see if changing to class and just using component did mount so only called once? To sort url change reload in edit post form.
+  //uses hook to get initial data when app mounts
   useEffect(() => {
     props.dispatch(handleInitData())
   })
 
+  //main component with all required routes
   return (
     <div className="App">
       <header className="App-header">
@@ -29,7 +34,7 @@ function App(props) {
         <Route path='/newpost/:category/:post_id' component={ AddPost } />
         <Route path='/:category/:post_id' component={ PostDetails } />
       </Switch>
-      <footer></footer>
+      <footer />
     </div>
   )
 }

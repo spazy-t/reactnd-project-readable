@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import { handleNewPost } from '../actions/posts'
 import { useParams } from 'react-router-dom'
 import { generateUID } from '../utils/helpers'
-import { FormContainer, FormInput, NewEntryForm } from '../styles/main'
+import {
+    FormContainer,
+    FormInput,
+    NewEntryForm
+} from '../styles/main'
 
 const AddPost = (props) => {
     //reads the url parameter to know which category to place a new post into
@@ -43,26 +47,26 @@ const AddPost = (props) => {
                 <FormInput
                     type='text'
                     className='form-input'
-                    value={title}
+                    value={ title }
                     name='title'
                     placeholder='Enter Title'
-                    onChange={(evt) => setTitle(evt.target.value)}
+                    onChange={ (evt) => setTitle(evt.target.value) }
                  />
                 <FormInput
                     type='text'
                     className='form-input'
-                    value={author}
+                    value={ author }
                     name='author'
                     placeholder='Enter Author name'
-                    onChange={(evt) => setAuthor(evt.target.value)}
+                    onChange={ (evt) => setAuthor(evt.target.value) }
                 />
                 <textarea
                     type='text'
                     className='form-input'
-                    value={body}
+                    value={ body }
                     name='body'
                     placeholder='Enter body of post'
-                    onChange={(evt) => setBody(evt.target.value)}
+                    onChange={ (evt) => setBody(evt.target.value) }
                 />
                 <button
                     type='submit'

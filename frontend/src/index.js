@@ -7,14 +7,17 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 //import * as serviceWorker from './serviceWorker'
+//TODO: remove service worker in version to be marked
 
 //css
 import './styles/main.css'
 
+//creates store fro redux state with combined middleware and combined reducer objects
 const store = createStore(reducer, middleware)
 
+//wraps app in store and router
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={ store }>
     <BrowserRouter>
       <App />
     </BrowserRouter>

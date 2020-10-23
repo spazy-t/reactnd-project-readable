@@ -16,9 +16,9 @@ const Votes = (props) => {
     //shows vote component but displays in grid if in details screen via passing styled component a prop
     return(
         <VoteWidget columnNum={ detailsScreen ? 3 : 'none' }>
-            <button onClick={() => dispatch(voteAction(id, 'upVote'))}>+</button>
-            <h4>{postVoteNum}</h4>
-            <button onClick={() => dispatch(voteAction(id, 'downVote'))}>-</button>
+            <button onClick={ () => dispatch(voteAction(id, 'upVote')) }>+</button>
+            <h4>{ postVoteNum }</h4>
+            <button onClick={ () => dispatch(voteAction(id, 'downVote')) }>-</button>
         </VoteWidget>
     )
 }

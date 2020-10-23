@@ -10,14 +10,21 @@ import Votes from './Votes'
 import CommentCard from './CommentCard'
 import NewCommentForm from './NewCommentForm'
 import FourOFour from '../screens/FourOFour'
-import { StyledPostDetails, CommentList, AddCommentBtn, BtnHolder } from '../styles/main'
+import {
+    StyledPostDetails,
+    CommentList,
+    AddCommentBtn,
+    BtnHolder
+} from '../styles/main'
 
 const PostDetails = (props) => {
     const { currentPost, postCommentsIds, history, handlePostDelete } = props
+    //global to contain date object to show formatted date in display
     let dateObj = ''
 
     //hooks
     const { post_id } = useParams()
+    //local state to show / hide form
     const [showForm, setShowForm] = useState(false)
 
     //callback to send to NewCommentForm to hide form when comment added
@@ -35,36 +42,36 @@ const PostDetails = (props) => {
         }
     }
 
-    //if user has navigated to non existent post show 404 page
+    //if user has navigated to non existent post show 404 page, else formatt date to use in display
     if(currentPost === undefined) {
         return <FourOFour />
     } else {
         dateObj = new Date(currentPost.timestamp)
         dateObj = `${dateObj.getDay()} / ${dateObj.getMonth()} / ${dateObj.getFullYear()}`
     }
-    //TODO: timestamp to actual date
+ 
     return(
         <StyledPostDetails>
             <article>
-                <h1>{currentPost.title}</h1>
-                <h2>{`By: ${currentPost.author}`}</h2>
-                <h3>{dateObj.toString()}</h3>
-                <h3>{`${currentPost.commentCount} Comments`}</h3>
-                <p>{currentPost.body}</p>
+                <h1>{ currentPost.title }</h1>
+                <h2>{ `By: ${currentPost.author}` }</h2>
+                <h3>{ dateObj.toString() }</h3>
+                <h3>{ `${currentPost.commentCount} Comments` }</h3>
+                <p>{ currentPost.body }</p>
                 <BtnHolder>
                     <button onClick={ () => history.push(`/newpost/${currentPost.category}/${post_id}`) }>Edit</button>
                     <button onClick={ handleDelete }>Delete</button>
                 </BtnHolder>
-                <Votes id={post_id} />
+                <Votes id={ post_id } />
             </article>
             <CommentList>
                 { postCommentsIds.map(comment => (
-                    <CommentCard key={comment.id} id={comment.id} />
+                    <CommentCard key={ comment.id } id={ comment.id } />
                 ))}
                 { showForm
-                ? <NewCommentForm parentId={post_id} hideForm={hideForm} />
+                ? <NewCommentForm parentId={ post_id } hideForm={ hideForm } />
                 : <AddCommentBtn
-                    onClick={() => setShowForm(true)}>
+                    onClick={ () => setShowForm(true) }>
                         Add Comment
                     </AddCommentBtn>
                 }

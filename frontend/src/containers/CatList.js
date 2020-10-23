@@ -9,7 +9,7 @@ const CatList = (props) => {
 
     return(
         <CategoryList>
-            {currentCategories.map(category => (
+            { currentCategories.map(category => (
                 <CatContainer key={ category } id={ category } />
             ))}
         </CategoryList>

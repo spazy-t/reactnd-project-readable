@@ -1,13 +1,28 @@
-import { RECEIVE_POSTS, POST_VOTE_UP, POST_VOTE_DOWN, ADD_NEW_POST, DELETE_POST, COMMENT_COUNT_UP, COMMENT_COUNT_DOWN } from '../constants'
-import { postPostVote, addNewPost, editPost, deletePost } from '../utils/helpers'
+import {
+    RECEIVE_POSTS,
+    POST_VOTE_UP,
+    POST_VOTE_DOWN,
+    ADD_NEW_POST,
+    DELETE_POST,
+    COMMENT_COUNT_UP,
+    COMMENT_COUNT_DOWN
+} from '../constants'
+import {
+    postPostVote,
+    addNewPost,
+    editPost,
+    deletePost
+} from '../utils/helpers'
+
+//Thunk and regular actions dealing with reltrieval, deletion, addition, number of comments, and voting for posts
 
 /**
  * thunk actions
  */
 //TODO: optomistic updating, look up in previous project
 export const handlePostVote = (id, voteType) => {
-    return(dispatch) => {
-        postPostVote(id, {option: voteType})
+    return (dispatch) => {
+        postPostVote(id, { option: voteType })
         .then(
             voteType === 'upVote'
                 ? dispatch(postVoteUp(id))
@@ -21,7 +36,7 @@ export const handlePostVote = (id, voteType) => {
 
 //adds new post to category in server then store state, or edits a post depending on boolean passed in from addPost
 export const handleNewPost = (newPost, edit = false) => {
-    return(dispatch) => {
+    return (dispatch) => {
         return (!edit ? addNewPost(newPost) : editPost(newPost))
         .then((data) => {
             dispatch(newCatPost(data))
@@ -33,7 +48,7 @@ export const handleNewPost = (newPost, edit = false) => {
 }
 
 export const handlePostDelete = (postId) => {
-    return(dispatch) => {
+    return (dispatch) => {
         deletePost(postId)
         .then(
             dispatch(postDelete(postId))
