@@ -53,7 +53,9 @@ export const handleNewComment = (newComment, edit = false) => {
         return (!edit ? addNewComment(newComment) : editComment(newComment))
         .then((data) => {
             dispatch(addComment(data))
-            dispatch(postCommentUp(data.parentId))
+            if(!edit) {
+                dispatch(postCommentUp(data.parentId))
+            }
         })
         .catch(err => console.log('error saving new comment', err))
     }

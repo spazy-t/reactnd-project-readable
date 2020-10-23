@@ -15,7 +15,6 @@ import PostDetails from './containers/PostDetails'
 import Nav from './screens/Nav'
 
 function App(props) {
-  //TODO: see if changing to class and just using component did mount so only called once? To sort url change reload in edit post form.
   //uses hook to get initial data when app mounts
   useEffect(() => {
     props.dispatch(handleInitData())

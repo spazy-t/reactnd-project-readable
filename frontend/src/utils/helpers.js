@@ -1,4 +1,4 @@
-//TODO: set token in env file
+//auth token
 const token = 'admin'
 
 /**
