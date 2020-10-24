@@ -57,7 +57,7 @@ const AddPost = (props) => {
     }
 
     //if undefined url show 404
-    if(post_id !== undefined && badPostUrl || badCatUrl) {
+    if((post_id !== undefined && badPostUrl) || badCatUrl) {
         return(
             <LonerBox>
                 <FourOFour />
