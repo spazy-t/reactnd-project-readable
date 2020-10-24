@@ -319,3 +319,10 @@ export const FofContainer = styled.div`
         margin-top: 0;
     }
 `
+
+export const LonerBox = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`

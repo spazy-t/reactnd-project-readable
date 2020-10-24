@@ -14,7 +14,8 @@ import {
     StyledPostDetails,
     CommentList,
     AddCommentBtn,
-    BtnHolder
+    BtnHolder,
+    LonerBox
 } from '../styles/main'
 
 const PostDetails = (props) => {
@@ -44,7 +45,11 @@ const PostDetails = (props) => {
 
     //if user has navigated to non existent post show 404 page, else formatt date to use in display
     if(currentPost === undefined) {
-        return <FourOFour />
+        return(
+            <LonerBox>
+                <FourOFour />
+            </LonerBox>
+        )
     } else {
         dateObj = new Date(currentPost.timestamp)
         dateObj = `${dateObj.getDay()} / ${dateObj.getMonth()} / ${dateObj.getFullYear()}`

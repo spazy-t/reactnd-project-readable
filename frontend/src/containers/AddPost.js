@@ -6,13 +6,15 @@ import { generateUID } from '../utils/helpers'
 import {
     FormContainer,
     FormInput,
-    NewEntryForm
+    NewEntryForm,
+    LonerBox
 } from '../styles/main'
+import FourOFour from '../screens/FourOFour'
 
 const AddPost = (props) => {
     //reads the url parameter to know which category to place a new post into
     const { category, post_id } = useParams()
-    const { editTitle, editAuthor, editBody, handleNewPost, history } = props
+    const { editTitle, editAuthor, editBody, handleNewPost, history, badPostUrl, badCatUrl } = props
 
     //local state for the form
     const [postValues, setValues] = useState({
@@ -52,6 +54,15 @@ const AddPost = (props) => {
             })
             history.goBack()
         })
+    }
+
+    //if undefined url show 404
+    if(post_id !== undefined && badPostUrl || badCatUrl) {
+        return(
+            <LonerBox>
+                <FourOFour />
+            </LonerBox>
+        )
     }
 
     //https://stackoverflow.com/questions/59813926/usestate-to-update-multiple-values-in-react (24/10/2020)
@@ -94,10 +105,12 @@ const AddPost = (props) => {
 }
 
 //map post body, title, and author from state if post is being edited
-function mapStateToProps({ posts }, route) {
-    const { post_id } = route.match.params
+function mapStateToProps({ posts, categories }, route) {
+    const { post_id, category } = route.match.params
 
     return {
+        badCatUrl: categories[category] === undefined,
+        badPostUrl: posts[post_id] === undefined,
         editTitle: posts[post_id] === undefined ? '' : posts[post_id].title,
         editAuthor: posts[post_id] === undefined ? '' : posts[post_id].author,
         editBody: posts[post_id] === undefined ? '' : posts[post_id].body
