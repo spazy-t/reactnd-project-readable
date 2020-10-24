@@ -19,7 +19,6 @@ import {
 /**
  * thunk actions
  */
-//TODO: optomistic updating, look up in previous project
 export const handlePostVote = (id, voteType) => {
     return (dispatch) => {
         postPostVote(id, { option: voteType })
@@ -81,7 +80,6 @@ export const postCommentDown = (postId) => {
     }
 }
 
-//TODO: maybe condense both votes into one, and pass through new number from component?
 const postVoteUp = (postId) => {
     return {
         type: POST_VOTE_UP,

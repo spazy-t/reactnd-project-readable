@@ -12,7 +12,6 @@ import { postCommentVote } from '../utils/helpers'
 /**
  * thunk actions
  */
-//TODO: optomistic updating, look up in previous project
 export const handleCommentVote = (commentId, voteType) => {
     return (dispatch) => {
         postCommentVote(commentId, { option: voteType })
