@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { handleNewPost } from '../actions/posts'
 import { useParams } from 'react-router-dom'
@@ -15,10 +15,21 @@ const AddPost = (props) => {
     const { editTitle, editAuthor, editBody, handleNewPost, history } = props
 
     //local state for the form
-    //if editing a current post populate local state with current post data
-    const [title, setTitle] = useState(editTitle !== undefined ? editTitle : '')
-    const [author, setAuthor] = useState(editAuthor !== undefined ? editAuthor : '')
-    const [body, setBody] = useState(editBody !== undefined ? editBody : '')
+    const [postValues, setValues] = useState({
+        title: '',
+        author: '',
+        body: ''
+    })
+
+    //https://reacttraining.com/blog/when-to-use-functions-in-hooks-dependency-array/ (24/10/2020)
+    //hook to update form fields if url is refreshed or navigated to edit post, then fire when post data is loaded and set local satet with data.
+    useEffect(() => {
+        setValues({
+            title: editTitle,
+            author: editAuthor,
+            body: editBody
+        })
+    }, [editTitle, editAuthor, editBody])
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
@@ -28,49 +39,52 @@ const AddPost = (props) => {
         handleNewPost({
             id: post_id === undefined ? generateUID() : post_id,
             timestamp: Date.now(),
-            title,
-            body,
-            author,
+            title: postValues.title,
+            body: postValues.body,
+            author: postValues.author,
             category: category
         }, post_id !== undefined)
         .then(() => {
-            setTitle('')
-            setAuthor('')
-            setBody('')
+            setValues({
+                title: '',
+                author: '',
+                body: ''
+            })
             history.goBack()
         })
     }
 
+    //https://stackoverflow.com/questions/59813926/usestate-to-update-multiple-values-in-react (24/10/2020)
     return(
         <FormContainer>
             <NewEntryForm onSubmit={ handleSubmit }>
                 <FormInput
                     type='text'
                     className='form-input'
-                    value={ title }
+                    value={ postValues.title }
                     name='title'
                     placeholder='Enter Title'
-                    onChange={ (evt) => setTitle(evt.target.value) }
+                    onChange={ (evt) => setValues({ ...postValues, [evt.target.name]: evt.target.value }) }
                  />
                 <FormInput
                     type='text'
                     className='form-input'
-                    value={ author }
+                    value={ postValues.author }
                     name='author'
                     placeholder='Enter Author name'
-                    onChange={ (evt) => setAuthor(evt.target.value) }
+                    onChange={ (evt) => setValues({ ...postValues, [evt.target.name]: evt.target.value }) }
                 />
                 <textarea
                     type='text'
                     className='form-input'
-                    value={ body }
+                    value={ postValues.body }
                     name='body'
                     placeholder='Enter body of post'
-                    onChange={ (evt) => setBody(evt.target.value) }
+                    onChange={ (evt) => setValues({ ...postValues, [evt.target.name]: evt.target.value }) }
                 />
                 <button
                     type='submit'
-                    disabled={ title === '' || author === '' || body === '' }
+                    disabled={ postValues.title === '' || postValues.author === '' || postValues.body === '' }
                 >
                     SUBMIT
                 </button>
@@ -82,18 +96,12 @@ const AddPost = (props) => {
 //TODO:how do I get post data when ulr is refreshed i.e. reloaded. Currently it loads page before posts are in store.
 //map post body, title, and author from state if post is being edited
 function mapStateToProps({ posts }, route) {
-    if (route.match.params.post_id !== undefined) {
-        const { post_id } = route.match.params
+    const { post_id } = route.match.params
 
-        if(posts[post_id] !== undefined) {
-            return {
-                editTitle: posts[post_id].title,
-                editAuthor: posts[post_id].author,
-                editBody: posts[post_id].body
-            }   
-        }
-    } else {
-        return {}
+    return {
+        editTitle: posts[post_id] === undefined ? '' : posts[post_id].title,
+        editAuthor: posts[post_id] === undefined ? '' : posts[post_id].author,
+        editBody: posts[post_id] === undefined ? '' : posts[post_id].body
     }
 }
 
