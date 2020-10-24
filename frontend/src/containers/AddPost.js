@@ -93,7 +93,6 @@ const AddPost = (props) => {
     )
 }
 
-//TODO:how do I get post data when ulr is refreshed i.e. reloaded. Currently it loads page before posts are in store.
 //map post body, title, and author from state if post is being edited
 function mapStateToProps({ posts }, route) {
     const { post_id } = route.match.params

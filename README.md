@@ -38,6 +38,10 @@ allows the use of nested styles and passing of props for more dynamic styles.
 
 [Udacity Project, would you rather](https://github.com/spazy-t/udacity-react-redux-game/blob/master/src/utils/_DATA.js) - generate a unique id (14/10/2020)
 
+[react training](https://reacttraining.com/blog/when-to-use-functions-in-hooks-dependency-array/) - Using hook dependencies (24/10/2020)
+
+[stack-overflow](https://stackoverflow.com/questions/59813926/usestate-to-update-multiple-values-in-react) - setting state hook value that has multiple values in it (24/10/2020)
+
 [MDN](https://developer.mozilla.org/en-US/) - for general definitions and use of syntax
 
 [stack-overflow](https://stackoverflow.com/) - for general help and use of syntax
